@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
-import { getAllUsers } from "./api/ApiMethods";
-import "./App.css";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { getAllUsers } from './api/ApiMethods';
+import './App.css';
 
-function App() {
-  const [users, setUsers] = useState([]);
+interface User {
+  _id: string;
+  name: string;
+}
+
+const App: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     fetchUsers();
@@ -19,11 +25,11 @@ function App() {
       <header className="App-header">
         <p>Hello from Rilind</p>
         {users?.map((user) => (
-          <h2>{user.name}</h2>
+          <h2 key={user.name}>{user.name}</h2>
         ))}
       </header>
     </div>
   );
-}
+};
 
 export default App;
