@@ -1,0 +1,30 @@
+@import '../../theme/styles/variables';
+
+.main {
+  position: relative;
+  .input {
+    width: 100%;
+    > div {
+      > input {
+        height: auto;
+        background-color: #fff;
+        border-radius: $smallRadius;
+      }
+      > fieldset {
+        border-radius: $smallRadius;
+      }
+      &:hover fieldset {
+        border-color: $mainColor !important;
+      }
+    }
+  }
+  .error {
+    position: absolute;
+    top: 90%;
+    left: 0.25em;
+    max-width: 20em;
+    color: $secondaryColor;
+    font-size: $tinyFont;
+    font-weight: 600;
+  }
+}

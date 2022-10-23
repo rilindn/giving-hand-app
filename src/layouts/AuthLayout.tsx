@@ -5,12 +5,7 @@ interface Props {
 }
 
 const AuthLayout: React.FC<Props> = ({ children }) => {
-  return (
-    <div>
-      AuthLayout
-      {children}
-    </div>
-  );
+  return <>{children}</>;
 };
 
 export default AuthLayout;

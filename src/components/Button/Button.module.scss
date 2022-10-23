@@ -1,0 +1,11 @@
+@import '../../theme/styles/variables';
+
+.main {
+  border-radius: $fullRadius !important;
+  height: 3.4em;
+  margin-top: 1.5em !important;
+  .title {
+    color: #fff;
+    font-size: $normalFont;
+  }
+}

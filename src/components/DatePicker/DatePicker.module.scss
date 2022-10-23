@@ -1,0 +1,35 @@
+@import '../../theme/styles/variables';
+
+.main {
+  position: relative;
+  .input {
+    width: 100%;
+    border-radius: $smallRadius;
+    margin: 1em 0 !important;
+    > label {
+      color: $textColor !important;
+    }
+    > div {
+      height: auto;
+      background-color: #fff;
+      border-radius: $smallRadius;
+
+      > fieldset {
+        border-radius: $smallRadius;
+        border-color: rgba($textColor, 0.4) !important;
+      }
+      &:hover fieldset {
+        border-color: $mainColor !important;
+      }
+    }
+  }
+  .error {
+    position: absolute;
+    top: 90%;
+    left: 0.25em;
+    max-width: 20em;
+    color: $secondaryColor;
+    font-size: $tinyFont;
+    font-weight: 600;
+  }
+}

@@ -1,46 +1,25 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { getAllUsers } from '@/api/ApiMethods';
-import Navigation from '@/routes/index';
-import AuthLayout from '@/layouts/AuthLayout';
-import MainLayout from '@/layouts/MainLayout';
+import { ThemeProvider } from '@mui/material/styles';
+import { SnackbarProvider } from 'notistack';
 
-interface IUser {
-  _id: string;
-  name: string;
-}
+import { AuthContextProvider } from './contexts/AuthContext';
+import theme from './theme/mui';
+import Layout from './layouts/index';
 
 const App: React.FC = () => {
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [isAuth, setIsAuth] = useState(true);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    const users = await getAllUsers();
-    setUsers(users);
-  };
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello from Rilind</p>
-        {users?.map((user) => (
-          <h2 key={user.name}>{user.name}</h2>
-        ))}
-        {!isAuth ? (
-          <AuthLayout>
-            <Navigation />
-          </AuthLayout>
-        ) : (
-          <MainLayout>
-            <Navigation />
-          </MainLayout>
-        )}
-      </header>
-    </div>
+    <SnackbarProvider
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center'
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <AuthContextProvider>
+          <Layout />
+        </AuthContextProvider>
+      </ThemeProvider>
+    </SnackbarProvider>
   );
 };
 
