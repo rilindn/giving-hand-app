@@ -1,6 +1,7 @@
 import { Control, Controller, FieldPath, FieldPathValue, FieldValues } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { FieldErrors } from 'react-hook-form/dist/types';
+import clsx from 'clsx';
 
 import styles from './Input.module.scss';
 
@@ -8,11 +9,12 @@ const CustomInput: React.FC<Props> = ({
   control,
   name,
   defaultValue = '',
-  label,
   variant = 'outlined',
   margin = 'normal',
   type = 'text',
-  errors
+  errors,
+  rounded,
+  ...props
 }) => {
   return (
     <div className={styles.main}>
@@ -22,13 +24,13 @@ const CustomInput: React.FC<Props> = ({
         defaultValue={defaultValue}
         render={({ field: { onChange, value } }: IController) => (
           <TextField
-            className={styles.input}
+            className={clsx(styles.input, { [styles.rounded]: !!rounded })}
             value={value}
             onChange={onChange}
-            label={label}
             variant={variant}
             margin={margin}
             type={type}
+            {...props}
           />
         )}
       />
@@ -46,6 +48,16 @@ interface Props {
   margin?: 'normal' | 'dense' | 'none' | undefined;
   type?: string;
   errors?: FieldErrors | any;
+  multiline?: boolean;
+  rows?: number;
+  rounded?: boolean;
+  hiddenLabel?: boolean;
+  InputProps?: InputProps;
+  placeholder?: string;
+}
+
+interface InputProps {
+  startAdornment: React.ReactNode;
 }
 
 interface IController {

@@ -1,11 +1,10 @@
 import React from 'react';
+import Header from 'components/Header/Header';
 
 const MainLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <header className="Layout-header">
-        <p>Hello from Rilind</p>
-      </header>
+      <Header />
       {children}
     </>
   );

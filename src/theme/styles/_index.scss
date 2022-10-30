@@ -26,14 +26,7 @@ body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-span,
-h1,
-h2,
-h3,
-label {
-  line-height: 1.7em;
+  box-sizing: border-box;
 }
 
 code {

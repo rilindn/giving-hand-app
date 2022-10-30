@@ -5,10 +5,10 @@
   .input {
     width: 100%;
     > div {
+      background-color: #fff !important;
+      border-radius: $smallRadius;
       > input {
         height: auto;
-        background-color: #fff;
-        border-radius: $smallRadius;
       }
       > fieldset {
         border-radius: $smallRadius;
@@ -16,6 +16,12 @@
       &:hover fieldset {
         border-color: $mainColor !important;
       }
+    }
+  }
+  .rounded > div {
+    border-radius: $fullRadius;
+    > fieldset {
+      border-radius: $fullRadius;
     }
   }
   .error {

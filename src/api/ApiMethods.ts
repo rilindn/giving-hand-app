@@ -3,6 +3,7 @@ import { Client } from './ApiBase';
 import { ILogin, IUser } from 'interfaces/user';
 import { IResetPassword, IValidateToken } from 'interfaces/resetToken';
 import { IResetTokenSearch } from 'interfaces/resetToken';
+import { IProductPayload } from 'interfaces/post';
 
 // Users
 export async function getAllUsers() {
@@ -65,5 +66,25 @@ export async function validateResetToken(payload: IValidateToken) {
     return result;
   } catch (err) {
     console.error('validateResetToken', err);
+  }
+}
+
+/* Product */
+
+export async function newProduct(payload: IProductPayload) {
+  try {
+    const result: AxiosResponse = await Client.post(`product`, payload);
+    return result;
+  } catch (err) {
+    console.error('newProduct', err);
+  }
+}
+
+export async function getAllProducts() {
+  try {
+    const result: AxiosResponse = await Client.get(`product`);
+    return result;
+  } catch (err) {
+    console.error('getAllProducts', err);
   }
 }

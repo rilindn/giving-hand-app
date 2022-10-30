@@ -1,3 +1,21 @@
 .wrapper {
-  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .items {
+    max-width: 80em;
+    width: 100%;
+    // display: flex;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    // column-gap: 3em;
+    // row-gap: 3em;
+    padding: 4em 10em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3rem;
+    justify-content: space-between;
+  }
 }

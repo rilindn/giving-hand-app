@@ -1,0 +1,52 @@
+@import '../../theme/styles/variables';
+
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  .form {
+    height: 80vh;
+    padding: 3em 8em;
+    background-color: $lightGreen;
+    border-radius: $normalRadius;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 35em;
+
+      .inputsWrapper {
+        display: flex;
+        justify-content: space-between;
+        > div,
+        > button {
+          width: 48% !important;
+        }
+      }
+    }
+    .intro {
+      font-size: $normalFont;
+      font-weight: 600;
+    }
+    .forgotPsw {
+      color: $mainColor;
+      font-weight: bold;
+      font-size: $tinyFont;
+    }
+    .helper {
+      font-size: $extraSmallFont;
+      font-weight: 400;
+      a {
+        color: $secondaryColor;
+        font-weight: 700;
+        text-decoration: none;
+      }
+    }
+  }
+}

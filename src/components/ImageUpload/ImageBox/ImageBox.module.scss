@@ -1,0 +1,27 @@
+@import '../../../theme/styles/variables';
+
+.main {
+  margin-bottom: 1em;
+  div,
+  img {
+    width: 10em;
+    height: 10em;
+    border-radius: $normalRadius;
+  }
+  .newImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($mainColor, 0.1);
+    svg {
+      font-size: 5em;
+    }
+    &:hover {
+      background-color: rgba($mainColor, 0.15);
+      cursor: pointer;
+    }
+  }
+  img {
+    margin-right: 1em;
+  }
+}
