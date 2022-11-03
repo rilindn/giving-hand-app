@@ -1,0 +1,101 @@
+@import '../../theme/styles/variables';
+
+.main {
+  padding: 3em 5em;
+
+  .title {
+    margin-top: 0;
+  }
+  .product {
+    display: flex;
+    justify-content: space-between;
+
+    .slider {
+      width: 62%;
+      border-radius: 100px;
+
+      :global {
+        .slick-list {
+          border-radius: $normalRadius;
+        }
+        .slick-next {
+          right: 0px;
+        }
+        .slick-prev {
+          left: 10px;
+          z-index: 1;
+        }
+      }
+      svg {
+        &:hover {
+          color: none !important;
+        }
+      }
+      .slide {
+        position: relative;
+        overflow: hidden;
+        border-radius: $normalRadius;
+
+        > img,
+        div {
+          width: 100%;
+          aspect-ratio: 16/9;
+          object-fit: contain;
+
+          &.image {
+            z-index: 1;
+          }
+          &.background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            width: 110%;
+            height: 110%;
+            -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
+            filter: blur(10px);
+          }
+        }
+      }
+    }
+    .details {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1em;
+      background-color: $lightGreen;
+      border-radius: $normalRadius;
+
+      .user {
+        padding-bottom: 1em;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: 0.5em;
+        }
+      }
+      .categories {
+        display: flex;
+        max-width: 80%;
+        overflow: hidden;
+        gap: 5px;
+        flex-wrap: wrap;
+        padding-bottom: 1em;
+
+        :global(.MuiChip-root) {
+          padding: 0 1.5em;
+          background-color: #fff;
+          color: $mainColor;
+          border: 1px solid $mainColor;
+        }
+      }
+      .location {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+      }
+    }
+  }
+}

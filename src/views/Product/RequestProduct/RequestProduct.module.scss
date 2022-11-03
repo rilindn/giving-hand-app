@@ -1,4 +1,4 @@
-@import '../../theme/styles/variables';
+@import '../../../theme/styles/variables';
 
 .main {
   height: 100vh;
@@ -6,7 +6,7 @@
   justify-content: center;
 
   .form {
-    height: 80vh;
+    height: auto;
     padding: 3em 8em;
     background-color: $lightGreen;
     border-radius: $normalRadius;

@@ -1,3 +1,4 @@
+import { IUser } from 'interfaces/user';
 interface Images {
   url: string;
 }
@@ -10,6 +11,7 @@ export interface IProduct {
   userId: string;
   location: string;
   categories: string[];
+  user?: IUser[];
 }
 
 export interface IProductPayload {

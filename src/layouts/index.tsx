@@ -5,15 +5,20 @@ import AuthLayout from './AuthLayout';
 import MainLayout from './MainLayout';
 
 const Layout: React.FC = () => {
-  const { isAuthenticated } = useAuth(false);
-  return !isAuthenticated ? (
-    <AuthLayout>
-      <Navigation />
-    </AuthLayout>
+  const { loading, isAuthenticated } = useAuth(false);
+
+  return !loading ? (
+    !isAuthenticated ? (
+      <AuthLayout>
+        <Navigation />
+      </AuthLayout>
+    ) : (
+      <MainLayout>
+        <Navigation />
+      </MainLayout>
+    )
   ) : (
-    <MainLayout>
-      <Navigation />
-    </MainLayout>
+    <div></div>
   );
 };
 

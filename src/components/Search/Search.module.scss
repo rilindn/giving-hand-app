@@ -10,7 +10,7 @@
   align-items: center;
 
   h1 {
-    font-size: 45px;
+    font-size: 40px;
     margin-bottom: 1em;
   }
 
@@ -22,12 +22,13 @@
 
     > div {
       width: 70%;
+      height: 90%;
     }
 
     button {
       margin: 0 0 0 20px !important;
       width: 25%;
-      height: 98%;
+      height: 90%;
     }
   }
 }

@@ -89,7 +89,7 @@ const Register: React.FC = () => {
             />
             <CustomDatePicker control={control} name="birthDate" label="Birthdate" errors={errors} />
           </div>
-          <CustomButton title="Register" type="submit" loading={loading} />
+          <CustomButton title="Register" rounded type="submit" loading={loading} />
         </form>
         <p className={styles.helper}>
           Already have an account? <a href="/auth/login">Login</a>

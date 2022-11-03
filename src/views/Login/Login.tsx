@@ -50,7 +50,7 @@ const Login: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <CustomInput control={control} name="email" label="Email" errors={errors} />
           <CustomInput control={control} type="password" name="password" label="Password" errors={errors} />
-          <CustomButton title="Login" type="submit" loading={loading} />
+          <CustomButton title="Login" type="submit" rounded loading={loading} />
         </form>
         <a href="/auth/reset-password" className={styles.forgotPsw}>
           Forgotten password?

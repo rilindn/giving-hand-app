@@ -7,6 +7,7 @@ import Register from 'views/Register/Register';
 import Home from 'views/Home/Home';
 import ResetPassword from 'views/ResetPassword/ResetPassword';
 import ChangePassword from 'views/ChangePassword/ChangePassword';
+import Product from 'views/Product/Product';
 
 const Navigation: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const Navigation: React.FC = () => {
       </Route>
       <Route path="/" element={<AuthRoute />}>
         <Route path="home" element={<Home />} />
+        <Route path="product/:id" element={<Product />} />
       </Route>
     </Routes>
   );

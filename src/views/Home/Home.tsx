@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { Skeleton } from '@mui/material';
+import _ from 'lodash';
 
 import styles from './Home.module.scss';
 import Search from 'components/Search/Search';
 import { getAllProducts } from 'api/ApiMethods';
 import { IProduct } from 'interfaces/post';
-import Post from './Post/Post';
+import Product from './Product/Product';
+import Categories from './Categories/Categories';
 
 const Home: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const fetchProducts = async () => {
-    const products = await getAllProducts();
-    if (products?.status === 200) {
-      setProducts(products.data);
+    try {
+      const products = await getAllProducts();
+      if (products?.status === 200) {
+        setProducts(products.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -23,10 +34,23 @@ const Home: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <Search />
-      <div className={styles.items}>
-        {products.map((product) => (
-          <Post key={product?._id} product={product} />
-        ))}
+      <div className={styles.content}>
+        <Categories selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
+        {!loading ? (
+          <div className={styles.products}>
+            {products.map((product) => (
+              <Product key={product?._id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.products}>
+            {_.range(6).map((m) => (
+              <div key={m}>
+                <Skeleton key={m} variant="rectangular" height={250} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
