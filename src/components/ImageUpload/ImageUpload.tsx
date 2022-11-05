@@ -18,7 +18,7 @@ const ImageUpload: React.FC<Props> = ({ productImages = [], setProductImages }) 
       cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
       uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
     };
-    console.log('cloudKEys', cloudKeys);
+
     window.cloudinary.openUploadWidget(cloudKeys, (error: any, result: any) => {
       if (result.event === 'success') {
         setProductImages([
@@ -27,7 +27,6 @@ const ImageUpload: React.FC<Props> = ({ productImages = [], setProductImages }) 
             url: result.info.secure_url
           }
         ]);
-        console.log('result', result);
       }
     });
   };

@@ -8,6 +8,7 @@ import Home from 'views/Home/Home';
 import ResetPassword from 'views/ResetPassword/ResetPassword';
 import ChangePassword from 'views/ChangePassword/ChangePassword';
 import Product from 'views/Product/Product';
+import MyProducts from 'views/MyProducts/MyProducts';
 
 const Navigation: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const Navigation: React.FC = () => {
       <Route path="/" element={<AuthRoute />}>
         <Route path="home" element={<Home />} />
         <Route path="product/:id" element={<Product />} />
+        <Route path="my-products" element={<MyProducts />} />
       </Route>
     </Routes>
   );

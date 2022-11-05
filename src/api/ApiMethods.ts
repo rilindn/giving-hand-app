@@ -98,6 +98,15 @@ export async function getProductById(id: string) {
   }
 }
 
+export async function getMyProducts(id: string) {
+  try {
+    const result: AxiosResponse = await Client.get(`product/my-products/${id}`);
+    return result;
+  } catch (err) {
+    console.error('getMyProducts', err);
+  }
+}
+
 /* Product Request */
 
 export async function newProductRequest(payload: IProductPayload) {

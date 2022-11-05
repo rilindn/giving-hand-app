@@ -1,0 +1,85 @@
+@import '../../../theme/styles/variables';
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: $normalRadius;
+  padding: 1em;
+  margin: 1em;
+  text-decoration: none;
+  background-color: $lightGreen;
+  height: 200px;
+
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  .image {
+    aspect-ratio: 3/2;
+    width: 35%;
+    object-fit: cover;
+    border-radius: $normalRadius;
+    height: 100%;
+  }
+
+  .details {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    color: $textColor;
+    margin: 0 1em;
+    height: 100%;
+
+    .descriptionGroup {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .titleAndDescription {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.2em;
+
+        .title {
+          font-size: $largeFont;
+          font-weight: 500;
+          margin: 0.5em 0;
+        }
+        .description {
+          font-size: $normalFont;
+          margin: 0;
+        }
+      }
+      .locationGroup {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5em;
+
+        .location {
+          font-size: $smallFont;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .categories {
+      display: flex;
+      max-width: 80%;
+      gap: 5px;
+      flex-wrap: wrap;
+
+      :global {
+        .MuiChip-root {
+          color: $mainColor;
+          height: 27px;
+          border: 1px solid $mainColor;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}
