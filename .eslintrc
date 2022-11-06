@@ -45,7 +45,8 @@
           }
         ]
       }
-    ]
+    ],
+    "import/order": ["error", { "groups": ["external", "builtin", "internal", "sibling", "parent", "index"] }]
   },
   "settings": {
     "react": {

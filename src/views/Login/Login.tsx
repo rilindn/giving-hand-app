@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
 
 import { login } from 'api/ApiMethods';
 import useAuth from 'hooks/useAuth';
-import styles from './Login.module.scss';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import CustomButton from 'components/Button/Button';
 import CustomInput from 'components/Input/Input';
+import styles from './Login.module.scss';
 
 const schema = yup.object({
   email: yup.string().email().required().label('Email'),

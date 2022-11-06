@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
+import { useSnackbar } from 'notistack';
 import { Skeleton } from '@mui/material';
 
-import { IProduct } from 'interfaces/post';
-import styles from './MyProducts.module.scss';
+import { IProduct } from 'interfaces/product';
 import useAuth from 'hooks/useAuth';
-import { getMyProducts } from 'api/ApiMethods';
+import { deleteProduct, getMyProducts } from 'api/ApiMethods';
 import Product from './Product/Product';
+import styles from './MyProducts.module.scss';
 
 const MyProducts: React.FC<Props> = () => {
   const { authData } = useAuth();
+  const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -26,6 +28,14 @@ const MyProducts: React.FC<Props> = () => {
     }
   };
 
+  const handleDeleteProduct = async (id: string) => {
+    const result = await deleteProduct(id);
+    if (result?.status === 200) {
+      setProducts(products.filter((p) => p._id !== id));
+      enqueueSnackbar('Product deleted!', { variant: 'info' });
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -37,7 +47,7 @@ const MyProducts: React.FC<Props> = () => {
         {!loading ? (
           <div className={styles.products}>
             {products.map((product: IProduct) => (
-              <Product key={product?._id} product={product} />
+              <Product key={product?._id} product={product} handleDeleteProduct={handleDeleteProduct} />
             ))}
           </div>
         ) : (

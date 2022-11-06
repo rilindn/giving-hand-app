@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 
-import { newProduct } from 'api/ApiMethods';
+import { editProduct, newProduct } from 'api/ApiMethods';
 import CustomInput from 'components/Input/Input';
 import useAuth from 'hooks/useAuth';
-import styles from './ProductForm.module.scss';
 import CustomButton from 'components/Button/Button';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
-import { IProductPayload } from 'interfaces/post';
+import { IProductPayload } from 'interfaces/product';
 import ImageUpload from 'components/ImageUpload/ImageUpload';
 import MultipleSelectChip from 'components/ChipsInput/ChipsInput';
 import categories from 'data/categories';
+import { IProduct } from 'interfaces/product';
+import styles from './ProductForm.module.scss';
 
 const schema = yup.object({
   title: yup.string().required().label('Title'),
   description: yup.string().required().label('Description'),
   location: yup.string().required().label('Location')
-  // categories: yup.array().tuple([yup.string().required()]).label('Categories')
 });
 
 interface ProductImages {
@@ -27,10 +27,12 @@ interface ProductImages {
 }
 
 interface Props {
+  isEditing?: boolean;
+  product?: IProduct;
   onClose: () => void;
 }
 
-const ProductForm: React.FC<Props> = ({ onClose }) => {
+const ProductForm: React.FC<Props> = ({ isEditing = false, product, onClose }) => {
   const { authData } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,12 +50,12 @@ const ProductForm: React.FC<Props> = ({ onClose }) => {
     try {
       const payload = {
         ...data,
-        images: productImages,
-        userId: authData._id
+        userId: authData._id,
+        ...(!isEditing && { images: productImages })
       };
-      const result = await newProduct(payload);
+      const result = await (isEditing ? editProduct(product?._id, payload) : newProduct(payload));
       if (result?.status === 200) {
-        enqueueSnackbar('Product posted!', { variant: 'success' });
+        enqueueSnackbar(`Product ${isEditing ? 'updated' : 'posted'}!`, { variant: 'success' });
         onClose();
       } else enqueueSnackbar('Please try again!', { variant: 'error' });
     } catch (error) {
@@ -67,15 +69,34 @@ const ProductForm: React.FC<Props> = ({ onClose }) => {
     <div className={styles.main}>
       <div className={styles.form}>
         <Logo width={81} height={64} />
-        <p className={styles.intro}>New Product</p>
+        <p className={styles.intro}>{isEditing ? 'Edit' : 'New'} Product</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.inputsWrapper}>
-            <CustomInput control={control} name="title" label="Title" errors={errors} />
-            <CustomInput control={control} name="location" label="Location" errors={errors} />
+            <CustomInput defaultValue={product?.title} control={control} name="title" label="Title" errors={errors} />
+            <CustomInput
+              defaultValue={product?.location}
+              control={control}
+              name="location"
+              label="Location"
+              errors={errors}
+            />
           </div>
-          <CustomInput control={control} name="description" label="Description" multiline errors={errors} />
-          <MultipleSelectChip control={control} name="categories" label="Categories" options={categories} />
-          <ImageUpload productImages={productImages} setProductImages={setProductImages} />
+          <CustomInput
+            defaultValue={product?.description}
+            control={control}
+            name="description"
+            label="Description"
+            multiline
+            errors={errors}
+          />
+          <MultipleSelectChip
+            defaultValue={product?.categories}
+            control={control}
+            name="categories"
+            label="Categories"
+            options={categories}
+          />
+          {!isEditing && <ImageUpload productImages={productImages} setProductImages={setProductImages} />}
           <div className={styles.inputsWrapper}>
             <CustomButton rounded title="Cancel" color="info" onClick={onClose} />
             <CustomButton rounded title="Submit" type="submit" loading={loading} />

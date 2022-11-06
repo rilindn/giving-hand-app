@@ -11,11 +11,6 @@
   background-color: $lightGreen;
   height: 200px;
 
-  &:hover {
-    opacity: 0.9;
-    cursor: pointer;
-  }
-
   .image {
     aspect-ratio: 3/2;
     width: 35%;
@@ -39,7 +34,7 @@
       flex-direction: column;
       justify-content: space-between;
 
-      .titleAndDescription {
+      .topContainer {
         display: flex;
         flex-direction: column;
         margin-left: 0.2em;
@@ -52,33 +47,67 @@
         .description {
           font-size: $normalFont;
           margin: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       }
-      .locationGroup {
+      .bottomContainer {
         display: flex;
-        align-items: center;
-        margin-bottom: 0.5em;
+        justify-content: space-between;
 
-        .location {
-          font-size: $smallFont;
-          font-weight: 500;
+        .bottomLeftContainer {
+          display: flex;
+          align-items: center;
+
+          .locationGroup {
+            display: flex;
+            align-items: center;
+
+            .location {
+              font-size: $smallFont;
+              font-weight: 500;
+            }
+          }
+          .separator {
+            display: flex;
+            align-items: center;
+            margin: 0 5px;
+
+            svg {
+              font-size: 7px;
+            }
+          }
+          .date {
+            font-size: $smallFont;
+            font-weight: 300;
+          }
         }
       }
     }
 
-    .categories {
+    .topContainer {
       display: flex;
-      max-width: 80%;
-      gap: 5px;
-      flex-wrap: wrap;
+      justify-content: space-between;
 
-      :global {
-        .MuiChip-root {
-          color: $mainColor;
-          height: 27px;
-          border: 1px solid $mainColor;
-          background-color: #fff;
+      .categories {
+        display: flex;
+        max-width: 80%;
+        gap: 5px;
+        flex-wrap: wrap;
+
+        :global {
+          .MuiChip-root {
+            color: $mainColor;
+            height: 27px;
+            border: 1px solid $mainColor;
+            background-color: #fff;
+          }
         }
+      }
+      .moreDots {
+        z-index: 11111;
       }
     }
   }

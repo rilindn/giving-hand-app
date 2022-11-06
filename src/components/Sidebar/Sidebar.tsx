@@ -12,7 +12,11 @@ const Sidebar: React.FC<Props> = ({ isActive, onClose }) => {
         <span className={styles.name}>Giving Hand</span>
         <Close onClick={onClose} />
       </div>
-      <NavLink to="/home" className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}>
+      <NavLink
+        to="/home"
+        onClick={onClose}
+        className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}
+      >
         <div className={styles.item}>
           <Home className={styles.icon} />
           <span className={styles.sectionText}>Home</span>
@@ -20,6 +24,7 @@ const Sidebar: React.FC<Props> = ({ isActive, onClose }) => {
       </NavLink>
       <NavLink
         to="/my-products"
+        onClick={onClose}
         className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}
       >
         <div className={styles.item}>

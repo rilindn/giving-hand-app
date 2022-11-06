@@ -7,10 +7,10 @@ import { useSnackbar } from 'notistack';
 import { newProductRequest } from 'api/ApiMethods';
 import CustomInput from 'components/Input/Input';
 import useAuth from 'hooks/useAuth';
-import styles from './RequestProduct.module.scss';
 import CustomButton from 'components/Button/Button';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
-import { IProductPayload } from 'interfaces/post';
+import { IProductPayload } from 'interfaces/product';
+import styles from './RequestProduct.module.scss';
 
 const schema = yup.object({
   description: yup.string().required().label('Description')

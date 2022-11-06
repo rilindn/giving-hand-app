@@ -1,13 +1,19 @@
 import CustomInput from 'components/Input/Input';
-import styles from './Search.module.scss';
 import { useForm } from 'react-hook-form';
 import CustomButton from 'components/Button/Button';
 
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import styles from './Search.module.scss';
 
-const Search: React.FC<Props> = () => {
-  const { control } = useForm();
+const Search: React.FC<Props> = ({ setSearch }) => {
+  const { control, watch } = useForm();
+  const search = watch('search');
+
+  useEffect(() => {
+    setSearch(search);
+  }, [search]);
 
   return (
     <div className={styles.main}>
@@ -32,6 +38,8 @@ const Search: React.FC<Props> = () => {
   );
 };
 
-interface Props {}
+interface Props {
+  setSearch: Dispatch<SetStateAction<string>>;
+}
 
 export default Search;

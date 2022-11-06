@@ -7,8 +7,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { Control, Controller, FieldPath, FieldPathValue, FieldValues } from 'react-hook-form';
-import styles from './ChipsInput.module.scss';
 import { FieldErrors } from 'react-hook-form/dist/types';
+import styles from './ChipsInput.module.scss';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -24,11 +24,11 @@ const MenuProps = {
 const MultipleSelectChip: React.FC<Props> = ({
   control,
   name,
-  defaultValue = '',
   label,
   margin = 'normal',
   errors,
-  options = []
+  options = [],
+  defaultValue
 }) => {
   return (
     <div className={styles.main}>
@@ -48,7 +48,7 @@ const MultipleSelectChip: React.FC<Props> = ({
                 renderValue={() => (
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {value.map((val: string) => (
-                      <Chip key={val} label={val} />
+                      <Chip key={val} label={options.find((o) => o.value === val)?.label || val} />
                     ))}
                   </Box>
                 )}
@@ -72,11 +72,11 @@ const MultipleSelectChip: React.FC<Props> = ({
 interface Props {
   control: Control<any>;
   name: string;
-  defaultValue?: string;
   label?: string;
   margin?: 'normal' | 'dense' | 'none' | undefined;
   errors?: FieldErrors | any;
   options: IOptions[];
+  defaultValue?: string[];
 }
 
 interface IOptions {

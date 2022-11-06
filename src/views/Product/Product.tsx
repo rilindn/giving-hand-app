@@ -3,29 +3,39 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PlaceIcon from '@mui/icons-material/Place';
 import Slider from 'react-slick';
-
-import styles from './Product.module.scss';
-import { IProduct } from 'interfaces/post';
-import { getProductById } from 'api/ApiMethods';
 import { Avatar, Chip, Modal } from '@mui/material';
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
+
+import { IProduct } from 'interfaces/product';
+import { getProductById, getProducts } from 'api/ApiMethods';
 import CustomButton from 'components/Button/Button';
 import stringAvatar from 'utils/stringAvatar';
+import styles from './Product.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import RequestProduct from './RequestProduct/RequestProduct';
+import RelatedProducts from './RelatedProducts/RelatedProducts';
 
 const Product: React.FC<Props> = ({}) => {
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct>();
   const [isProductFormShown, setIsProductFormShown] = useState<boolean>(false);
+  const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
 
   const getProduct = async () => {
     if (!id) return;
     const result = await getProductById(id);
     if (result?.status === 200) {
-      console.log('first', result.data);
       setProduct(result.data);
+      getRelatedProducts(result.data.categories);
+    }
+  };
+
+  const getRelatedProducts = async (categories: string[]) => {
+    const categoriesQuery = categories.join(',');
+    const result = await getProducts({ categories: categoriesQuery });
+    if (result?.status === 200) {
+      setRelatedProducts(result.data);
     }
   };
 
@@ -79,7 +89,7 @@ const Product: React.FC<Props> = ({}) => {
           <CustomButton onClick={() => setIsProductFormShown(true)} title="Request" />
         </div>
       </div>
-      <div className={styles.relatedProducts}>Related Products</div>
+      <RelatedProducts products={relatedProducts} />
       <Modal className={styles.modal} open={isProductFormShown} onClose={() => setIsProductFormShown(false)}>
         <>
           <RequestProduct productId={product._id} onClose={() => setIsProductFormShown(false)} />

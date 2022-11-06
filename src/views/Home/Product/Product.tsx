@@ -1,8 +1,8 @@
 import Chip from '@mui/material/Chip';
 import _ from 'lodash';
 
+import { IProduct } from 'interfaces/product';
 import styles from './Product.module.scss';
-import { IProduct } from 'interfaces/post';
 
 const Post: React.FC<Props> = ({ product }) => {
   return (

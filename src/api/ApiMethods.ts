@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios';
-import { Client } from './ApiBase';
 import { ILogin, IUser } from 'interfaces/user';
 import { IResetPassword, IValidateToken } from 'interfaces/resetToken';
 import { IResetTokenSearch } from 'interfaces/resetToken';
-import { IProductPayload } from 'interfaces/post';
+import { IAllProductQuery, IProductPayload } from 'interfaces/product';
+import { Client } from './ApiBase';
 
 // Users
 export async function getAllUsers() {
@@ -80,12 +80,12 @@ export async function newProduct(payload: IProductPayload) {
   }
 }
 
-export async function getAllProducts() {
+export async function getProducts({ search, categories }: IAllProductQuery) {
   try {
-    const result: AxiosResponse = await Client.get(`product`);
+    const result: AxiosResponse = await Client.get(`product?search=${search}&categories=${categories}`);
     return result;
   } catch (err) {
-    console.error('getAllProducts', err);
+    console.error('getProducts', err);
   }
 }
 
@@ -104,6 +104,24 @@ export async function getMyProducts(id: string) {
     return result;
   } catch (err) {
     console.error('getMyProducts', err);
+  }
+}
+
+export async function editProduct(productId: string | undefined, payload: IProductPayload) {
+  try {
+    const result: AxiosResponse = await Client.put(`product/${productId}`, payload);
+    return result;
+  } catch (err) {
+    console.error('newProduct', err);
+  }
+}
+
+export async function deleteProduct(id: string) {
+  try {
+    const result: AxiosResponse = await Client.delete(`product/${id}`);
+    return result;
+  } catch (err) {
+    console.error('deleteProduct', err);
   }
 }
 
