@@ -1,3 +1,5 @@
+@import '../../theme/styles/variables';
+
 .main {
   display: flex;
   justify-content: space-between;
@@ -7,6 +9,7 @@
   .leftContainer {
     display: flex;
     align-items: center;
+    margin-left: 1em;
 
     svg {
       cursor: pointer;
@@ -15,7 +18,7 @@
     .name {
       padding: 0 15px;
       font-weight: 500;
-      font-size: 19px;
+      font-size: $extraLargeFont;
     }
   }
   .rightContainer {
@@ -24,11 +27,12 @@
 
     button {
       margin-top: 0 !important;
+      margin-right: 2em;
     }
     .user {
       display: flex;
       align-items: center;
-      margin-left: 3em;
+      margin-left: 2em;
       span {
         margin-right: 0.7em;
       }

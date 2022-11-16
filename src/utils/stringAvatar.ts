@@ -18,13 +18,13 @@ function stringToColor(string: string) {
   return color;
 }
 
-function stringAvatar(name: string) {
+function stringAvatar(name: string, width?: number, height?: number, fontSize?: number) {
   return {
     sx: {
       bgcolor: stringToColor(name),
-      width: 33,
-      height: 33,
-      fontSize: 15
+      width: width || 45,
+      height: height || 45,
+      fontSize: fontSize || 18
     },
     children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
   };

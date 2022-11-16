@@ -8,13 +8,13 @@ import { useSnackbar } from 'notistack';
 import { register } from 'api/ApiMethods';
 import CustomInput from 'components/Input/Input';
 import useAuth from 'hooks/useAuth';
-import styles from './Register.module.scss';
 import CustomButton from 'components/Button/Button';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { IUser } from 'interfaces/user';
 import CustomDatePicker from 'components/DatePicker/DatePicker';
 import CustomSelect from 'components/Select/Select';
 import { useNavigate } from 'react-router-dom';
+import styles from './Register.module.scss';
 
 const schema = yup.object({
   firstName: yup.string().required().label('Firstname'),

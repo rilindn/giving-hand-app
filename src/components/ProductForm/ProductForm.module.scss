@@ -1,6 +1,7 @@
 @import '../../theme/styles/variables';
 
 .main {
+  z-index: 3;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -19,7 +20,10 @@
     form {
       display: flex;
       flex-direction: column;
-      width: 35em;
+      flex-wrap: wrap;
+      width: 50em;
+      height: 100%;
+      justify-content: space-between;
 
       svg {
         min-height: 64px;
@@ -37,20 +41,6 @@
     .intro {
       font-size: $largeFont;
       font-weight: 600;
-    }
-    .forgotPsw {
-      color: $mainColor;
-      font-weight: bold;
-      font-size: $tinyFont;
-    }
-    .helper {
-      font-size: $extraSmallFont;
-      font-weight: 400;
-      a {
-        color: $secondaryColor;
-        font-weight: 700;
-        text-decoration: none;
-      }
     }
   }
 }

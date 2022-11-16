@@ -23,6 +23,7 @@ const Search: React.FC<Props> = ({ setSearch }) => {
           control={control}
           rounded
           name="search"
+          placeholder="Search"
           margin="none"
           InputProps={{
             startAdornment: (

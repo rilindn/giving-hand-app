@@ -3,6 +3,7 @@ import { ILogin, IUser } from 'interfaces/user';
 import { IResetPassword, IValidateToken } from 'interfaces/resetToken';
 import { IResetTokenSearch } from 'interfaces/resetToken';
 import { IAllProductQuery, IProductPayload } from 'interfaces/product';
+import { IProductRequestPayload } from 'interfaces/productRequest';
 import { Client } from './ApiBase';
 
 // Users
@@ -133,5 +134,14 @@ export async function newProductRequest(payload: IProductPayload) {
     return result;
   } catch (err) {
     console.error('newProductRequest', err);
+  }
+}
+
+export async function editProductRequest(productRequestId: string | undefined, payload: IProductRequestPayload) {
+  try {
+    const result: AxiosResponse = await Client.put(`product-request/${productRequestId}`, payload);
+    return result;
+  } catch (err) {
+    console.error('editProductRequest', err);
   }
 }

@@ -1,12 +1,15 @@
 @import '../../theme/styles/variables';
 
 .main {
+  margin: 1em 0;
   .label {
     margin-left: 0.25em;
+    margin-bottom: 0.5em;
   }
   .inputWrapper {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    gap: 1em;
   }
 }

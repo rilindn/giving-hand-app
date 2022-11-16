@@ -14,6 +14,7 @@
   z-index: 0;
   padding: 15px 10px 10px 20px;
   text-decoration: none;
+  color: #fff;
 
   &:hover {
     opacity: 0.9;
@@ -34,27 +35,48 @@
     z-index: 1;
   }
 
-  .categories {
+  .header {
+    width: 100%;
     display: flex;
-    max-width: 80%;
-    overflow: hidden;
-    gap: 5px;
-    flex-wrap: wrap;
-    height: 20px;
+    justify-content: space-between;
 
-    :global {
-      .MuiChip-root {
-        color: #fff;
-        font-weight: 300;
-        font-size: $tinyFont;
-        height: 20px;
-        padding: 0 2px;
-        z-index: 2;
-        border: 1px solid #a7a7a7;
+    .categories {
+      display: flex;
+      max-width: 80%;
+      overflow: hidden;
+      gap: 5px;
+      flex-wrap: wrap;
+      height: 20px;
 
-        .MuiChip-label {
-          padding: 0 5px;
+      :global {
+        .MuiChip-root {
+          color: #fff;
+          font-weight: 300;
+          font-size: $tinyFont;
+          height: 20px;
+          padding: 0 2px;
+          z-index: 2;
+          border: 1px solid #a7a7a7;
+
+          .MuiChip-label {
+            padding: 0 5px;
+          }
         }
+      }
+    }
+    .requests {
+      width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 2;
+      span {
+        font-size: $smallFont;
+        font-weight: 300;
+      }
+      svg {
+        opacity: 0.9;
+        width: 16px;
       }
     }
   }

@@ -5,3 +5,4 @@ declare global {
     cloudinary: any;
   }
 }
+declare module 'use-places-autocomplete';

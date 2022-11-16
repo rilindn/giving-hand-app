@@ -3,11 +3,11 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import styles from './ResetPassword.module.scss';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import CustomButton from 'components/Button/Button';
 import CustomInput from 'components/Input/Input';
 import { requestResetPassword } from 'api/ApiMethods';
+import styles from './ResetPassword.module.scss';
 
 const schema = yup.object({
   email: yup.string().email().required().label('Email')

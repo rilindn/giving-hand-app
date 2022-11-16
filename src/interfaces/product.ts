@@ -1,5 +1,5 @@
 import { IUser } from 'interfaces/user';
-import { IProductRequest } from './productRequest.';
+import { IProductRequest } from './productRequest';
 
 interface Images {
   url: string;
@@ -11,12 +11,13 @@ export interface IProduct {
   description: string;
   images: Images[];
   userId: string;
-  location: string;
+  location: ILocation;
   categories: string[];
   user?: IUser[];
-  requests?: IProductRequest[];
+  requests: IProductRequest[];
   createdAt: string;
   updatedAt: string;
+  __v: number;
 }
 
 export interface IProductPayload {
@@ -24,8 +25,13 @@ export interface IProductPayload {
   description: string;
   images?: Images[];
   userId: string;
-  location: string;
   categories?: string[];
+  location: ILocation;
+}
+
+export interface ILocation extends google.maps.LatLngLiteral {
+  address: string;
+  _id?: string;
 }
 
 export interface IAllProductQuery {

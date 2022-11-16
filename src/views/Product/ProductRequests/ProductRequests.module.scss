@@ -1,0 +1,56 @@
+@import '../../../theme/styles/variables';
+
+.main {
+  margin-top: 2em;
+  width: 80%;
+
+  .requests {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2em;
+
+    .request {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: $normalRadius;
+      background-color: $lightGreen;
+      color: $textColor;
+      text-decoration: none;
+      outline: none;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $textColor;
+
+        .requester {
+          display: flex;
+          align-items: center;
+          h3 {
+            margin-left: 0.5em;
+          }
+        }
+        .date {
+          font-weight: 400;
+          font-size: $smallFont;
+        }
+      }
+
+      .description {
+        font-size: $normalFont;
+        font-weight: 500;
+      }
+      .actions {
+        display: flex;
+        justify-content: space-evenly;
+        column-gap: 0.5em;
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

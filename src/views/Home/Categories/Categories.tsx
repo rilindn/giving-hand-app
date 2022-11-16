@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import styles from './Categories.module.scss';
 import categories from 'data/categories';
 import { Chip } from '@mui/material';
+import styles from './Categories.module.scss';
 
 const Categories: React.FC<Props> = ({ selectedCategories, setSelectedCategories }) => {
   const handleCategoriesFilter = (value: string) => {

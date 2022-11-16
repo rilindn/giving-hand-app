@@ -5,12 +5,12 @@ import * as yup from 'yup';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
-import styles from './ChangePassword.module.scss';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import CustomButton from 'components/Button/Button';
 import CustomInput from 'components/Input/Input';
 import { resetPassword, validateResetToken } from 'api/ApiMethods';
 import _ from 'lodash';
+import styles from './ChangePassword.module.scss';
 
 const schema = yup.object({
   password: yup.string().min(7).max(30).label('Password'),

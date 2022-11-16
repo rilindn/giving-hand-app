@@ -1,10 +1,10 @@
 import { TextField } from '@mui/material';
 import { Control, Controller, FieldPath, FieldPathValue, FieldValues } from 'react-hook-form';
-import styles from './DatePicker.module.scss';
 import { FieldErrors } from 'react-hook-form/dist/types';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import styles from './DatePicker.module.scss';
 
 const CustomDatePicker: React.FC<Props> = ({ control, name, defaultValue = '', label, errors }) => {
   return (

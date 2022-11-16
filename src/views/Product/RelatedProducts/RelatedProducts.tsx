@@ -37,7 +37,7 @@ const RelatedProducts: React.FC<Props> = ({ products }) => {
                   <p>{p.description}</p>
                 </div>
                 <div className={styles.footer}>
-                  <span className={styles.location}>{p.location}</span>
+                  <span className={styles.location}>{p.location?.address}</span>
                   <span className={styles.separator}>
                     <FiberManualRecordRounded fontSize="small" />
                   </span>

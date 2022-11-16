@@ -1,7 +1,8 @@
 import { CircularProgress } from '@mui/material';
 import Button from '@mui/material/Button';
-import styles from './Button.module.scss';
 import clsx from 'clsx';
+
+import styles from './Button.module.scss';
 
 const CustomButton: React.FC<Props> = ({
   onClick,
@@ -31,6 +32,7 @@ interface Props {
   title?: string;
   loading?: boolean;
   rounded?: boolean;
+  disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   color?: 'primary' | 'inherit' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | undefined;
 }

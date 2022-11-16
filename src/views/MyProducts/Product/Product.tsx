@@ -59,7 +59,7 @@ const Product: React.FC<Props> = ({ product, handleDeleteProduct }) => {
             <div className={styles.bottomLeftContainer}>
               <div className={styles.locationGroup}>
                 <PlaceIcon color="primary" fontSize="medium" />
-                <span className={styles.location}>{product.location}</span>
+                <span className={styles.location}>{product.location?.address}</span>
               </div>
               <span className={styles.separator}>
                 <FiberManualRecordRounded fontSize="small" />

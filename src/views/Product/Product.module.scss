@@ -1,101 +1,123 @@
 @import '../../theme/styles/variables';
 
 .main {
-  padding: 3em 5em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
+  padding: 3em 0;
 
-  .title {
-    margin-top: 0;
-  }
   .product {
-    display: flex;
-    justify-content: space-between;
+    width: 85%;
 
-    .slider {
-      width: 62%;
-      border-radius: 100px;
+    .title {
+      margin-top: 0;
+      text-align: left;
+    }
+    .productData {
+      display: flex;
+      justify-content: space-between;
 
-      :global {
-        .slick-list {
-          border-radius: $normalRadius;
-        }
-        .slick-next {
-          right: 0px;
-        }
-        .slick-prev {
-          left: 10px;
-          z-index: 1;
-        }
-      }
-      svg {
-        &:hover {
-          color: gray !important;
-        }
-      }
-      .slide {
-        position: relative;
-        overflow: hidden;
-        border-radius: $normalRadius;
+      .slider {
+        width: 62%;
+        border-radius: 100px;
 
-        > img,
-        div {
-          width: 100%;
-          aspect-ratio: 16/9;
-          object-fit: contain;
-
-          &.image {
+        :global {
+          .slick-list {
+            border-radius: $normalRadius;
+          }
+          .slick-next {
+            right: 0px;
+          }
+          .slick-prev {
+            left: 10px;
             z-index: 1;
           }
-          &.background {
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: -1;
-            width: 110%;
-            height: 110%;
-            -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
-            filter: blur(10px);
+        }
+        svg {
+          &:hover {
+            color: gray !important;
+          }
+        }
+        .slide {
+          position: relative;
+          overflow: hidden;
+          border-radius: $normalRadius;
+
+          > img,
+          div {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: contain;
+
+            &.image {
+              z-index: 1;
+            }
+            &.background {
+              position: absolute;
+              left: 0;
+              top: 0;
+              z-index: -1;
+              width: 110%;
+              height: 110%;
+              -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
+              filter: blur(10px);
+            }
           }
         }
       }
-    }
-    .details {
-      width: 30%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1em;
-      background-color: $lightGreen;
-      border-radius: $normalRadius;
-
-      .user {
-        padding-bottom: 1em;
+      .details {
+        width: 30%;
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1em;
+        background-color: $lightGreen;
+        border-radius: $normalRadius;
 
-        span {
-          margin-left: 0.5em;
+        .header {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid $textColor;
+
+          .user {
+            display: flex;
+            align-items: center;
+            h3 {
+              margin-left: 0.5em;
+            }
+          }
+          .date {
+            font-weight: 400;
+            font-size: $smallFont;
+          }
+        }
+        .categories {
+          display: flex;
+          max-width: 80%;
+          overflow: hidden;
+          gap: 5px;
+          flex-wrap: wrap;
+          padding-bottom: 1em;
+
+          :global(.MuiChip-root) {
+            padding: 0 1.5em;
+            background-color: #fff;
+            color: $mainColor;
+            border: 1px solid $mainColor;
+          }
+        }
+        .location {
+          display: flex;
+          align-items: center;
+          font-weight: bold;
         }
       }
-      .categories {
-        display: flex;
-        max-width: 80%;
-        overflow: hidden;
-        gap: 5px;
-        flex-wrap: wrap;
-        padding-bottom: 1em;
-
-        :global(.MuiChip-root) {
-          padding: 0 1.5em;
-          background-color: #fff;
-          color: $mainColor;
-          border: 1px solid $mainColor;
-        }
-      }
-      .location {
-        display: flex;
-        align-items: center;
-        font-weight: bold;
-      }
     }
+  }
+  .map {
+    width: 100%;
+    height: 400px;
   }
 }

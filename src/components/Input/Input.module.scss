@@ -16,6 +16,9 @@
       &:hover fieldset {
         border-color: $mainColor !important;
       }
+      :global(.MuiAutocomplete-endAdornment) {
+        top: 0;
+      }
     }
   }
   .rounded > div {
