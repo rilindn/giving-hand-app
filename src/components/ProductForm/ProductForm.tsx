@@ -81,9 +81,12 @@ const ProductForm: React.FC<Props> = ({ isEditing = false, product, onClose }) =
         <Logo width={81} height={64} />
         <p className={styles.intro}>{isEditing ? 'Edit' : 'New'} Product</p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.inputsWrapper}>
-            <div>
+          <FormLayout
+            isEditing={isEditing}
+            titleInput={
               <CustomInput defaultValue={product?.title} control={control} name="title" label="Title" errors={errors} />
+            }
+            descriptionInput={
               <CustomInput
                 defaultValue={product?.description}
                 control={control}
@@ -92,9 +95,9 @@ const ProductForm: React.FC<Props> = ({ isEditing = false, product, onClose }) =
                 multiline
                 errors={errors}
               />
-              {!isEditing && <ImageUpload productImages={productImages} setProductImages={setProductImages} />}
-            </div>
-            <div>
+            }
+            imageInput={<ImageUpload productImages={productImages} setProductImages={setProductImages} />}
+            categoriesInput={
               <MultipleSelectChip
                 defaultValue={product?.categories}
                 control={control}
@@ -102,17 +105,17 @@ const ProductForm: React.FC<Props> = ({ isEditing = false, product, onClose }) =
                 label="Categories"
                 options={categories}
               />
-              {!isEditing && (
-                <GooglePlacesInput
-                  name="location"
-                  label="Location"
-                  control={control}
-                  location={location}
-                  setLocation={setLocation}
-                />
-              )}
-            </div>
-          </div>
+            }
+            locationInput={
+              <GooglePlacesInput
+                name="location"
+                label="Location"
+                control={control}
+                location={location}
+                setLocation={setLocation}
+              />
+            }
+          />
           <div className={styles.inputsWrapper}>
             <CustomButton rounded title="Cancel" color="info" onClick={onClose} />
             <CustomButton rounded title="Submit" type="submit" loading={loading} />
@@ -124,5 +127,42 @@ const ProductForm: React.FC<Props> = ({ isEditing = false, product, onClose }) =
 };
 
 ProductForm.displayName = 'ProductForm';
+
+interface IFormLayout {
+  isEditing: boolean;
+  titleInput: React.ReactNode;
+  descriptionInput: React.ReactNode;
+  imageInput: React.ReactNode;
+  categoriesInput: React.ReactNode;
+  locationInput: React.ReactNode;
+}
+
+const FormLayout: React.FC<IFormLayout> = ({
+  isEditing,
+  titleInput,
+  descriptionInput,
+  imageInput,
+  categoriesInput,
+  locationInput
+}) =>
+  isEditing ? (
+    <div>
+      {titleInput}
+      {descriptionInput}
+      {categoriesInput}
+    </div>
+  ) : (
+    <div className={styles.inputsWrapper}>
+      <div>
+        {titleInput}
+        {descriptionInput}
+        {imageInput}
+      </div>
+      <div>
+        {categoriesInput}
+        {locationInput}
+      </div>
+    </div>
+  );
 
 export default ProductForm;
