@@ -4,8 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
-import CustomButton from 'components/Button/Button';
-import CustomInput from 'components/Input/Input';
+import CustomButton from 'components/Inputs/Button/Button';
+import CustomInput from 'components/Inputs/Input/Input';
 import { requestResetPassword } from 'api/ApiMethods';
 import styles from './ResetPassword.module.scss';
 

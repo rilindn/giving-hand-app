@@ -5,9 +5,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 
 import { newProductRequest } from 'api/ApiMethods';
-import CustomInput from 'components/Input/Input';
+import CustomInput from 'components/Inputs/Input/Input';
 import useAuth from 'hooks/useAuth';
-import CustomButton from 'components/Button/Button';
+import CustomButton from 'components/Inputs/Button/Button';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { IProductPayload } from 'interfaces/product';
 import styles from './RequestProduct.module.scss';

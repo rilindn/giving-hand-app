@@ -6,13 +6,13 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 
 import { register } from 'api/ApiMethods';
-import CustomInput from 'components/Input/Input';
+import CustomInput from 'components/Inputs/Input/Input';
 import useAuth from 'hooks/useAuth';
-import CustomButton from 'components/Button/Button';
+import CustomButton from 'components/Inputs/Button/Button';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { IUser } from 'interfaces/user';
-import CustomDatePicker from 'components/DatePicker/DatePicker';
-import CustomSelect from 'components/Select/Select';
+import CustomDatePicker from 'components/Inputs/DatePicker/DatePicker';
+import CustomSelect from 'components/Inputs/Select/Select';
 import { useNavigate } from 'react-router-dom';
 import styles from './Register.module.scss';
 

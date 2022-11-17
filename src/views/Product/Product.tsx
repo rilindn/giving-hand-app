@@ -10,7 +10,7 @@ import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
 import { IProduct } from 'interfaces/product';
 import { getProductById, getProducts } from 'api/ApiMethods';
 import useAuth from 'hooks/useAuth';
-import CustomButton from 'components/Button/Button';
+import CustomButton from 'components/Inputs/Button/Button';
 import stringAvatar from 'utils/stringAvatar';
 import moment from 'moment';
 import 'slick-carousel/slick/slick.css';
@@ -44,7 +44,7 @@ const Product: React.FC<Props> = ({}) => {
   };
 
   const getRelatedProducts = async (categories: string[]) => {
-    const categoriesQuery = categories.join(',');
+    const categoriesQuery = categories?.join(',') || '';
     const result = await getProducts({ categories: categoriesQuery });
     if (result?.status === 200) {
       setRelatedProducts(result.data);

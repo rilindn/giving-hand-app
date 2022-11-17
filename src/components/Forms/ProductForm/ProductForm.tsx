@@ -6,16 +6,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 
 import { editProduct, newProduct } from 'api/ApiMethods';
-import CustomInput from 'components/Input/Input';
+import CustomInput from 'components/Inputs/Input/Input';
 import useAuth from 'hooks/useAuth';
-import CustomButton from 'components/Button/Button';
+import CustomButton from 'components/Inputs/Button/Button';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { IProductPayload, ILocation } from 'interfaces/product';
-import ImageUpload from 'components/ImageUpload/ImageUpload';
-import MultipleSelectChip from 'components/ChipsInput/ChipsInput';
+import ImageUpload from 'components/Inputs/ImageUpload/ImageUpload';
+import MultipleSelectChip from 'components/Inputs/ChipsInput/ChipsInput';
 import categories from 'data/categories';
 import { IProduct } from 'interfaces/product';
-import GooglePlacesInput from 'components/GooglePlacesInput/GooglePlacesInput';
+import GooglePlacesInput from 'components/Inputs/GooglePlacesInput/GooglePlacesInput';
 import styles from './ProductForm.module.scss';
 
 const schema = yup.object({

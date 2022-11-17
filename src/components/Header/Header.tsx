@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Avatar, Modal, Menu, MenuItem } from '@mui/material';
 
-import CustomButton from 'components/Button/Button';
-import ProductForm from 'components/ProductForm/ProductForm';
+import CustomButton from 'components/Inputs/Button/Button';
+import ProductForm from 'components/Forms/ProductForm/ProductForm';
 import useAuth from 'hooks/useAuth';
 import stringAvatar from 'utils/stringAvatar';
 import { NotificationsOutlined } from '@mui/icons-material';
+import NotificationsPopper from 'components/NotificationsPopper/NotificationsPopper';
 import styles from './Header.module.scss';
 
 const Header: React.FC<Props> = () => {
@@ -29,7 +30,7 @@ const Header: React.FC<Props> = () => {
       </div>
       <div className={styles.rightContainer}>
         <CustomButton title="List a Product" onClick={() => setIsProductFormShown(true)} />
-        <NotificationsOutlined fontSize="large" color="primary" />
+        <NotificationsPopper />
         <div className={styles.user}>
           <span>{fullName}</span>
           <Avatar onClick={(e) => handleClick(e)} {...stringAvatar(fullName)} />

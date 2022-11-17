@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Skeleton } from '@mui/material';
 import _ from 'lodash';
 
-import Search from 'components/Search/Search';
+import Search from 'components/Inputs/Search/Search';
 import { getProducts } from 'api/ApiMethods';
 import { IProduct } from 'interfaces/product';
 import styles from './Home.module.scss';

@@ -6,8 +6,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
-import CustomButton from 'components/Button/Button';
-import CustomInput from 'components/Input/Input';
+import CustomButton from 'components/Inputs/Button/Button';
+import CustomInput from 'components/Inputs/Input/Input';
 import { resetPassword, validateResetToken } from 'api/ApiMethods';
 import _ from 'lodash';
 import styles from './ChangePassword.module.scss';

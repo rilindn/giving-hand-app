@@ -7,8 +7,8 @@ import { useSnackbar } from 'notistack';
 import { login } from 'api/ApiMethods';
 import useAuth from 'hooks/useAuth';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
-import CustomButton from 'components/Button/Button';
-import CustomInput from 'components/Input/Input';
+import CustomButton from 'components/Inputs/Button/Button';
+import CustomInput from 'components/Inputs/Input/Input';
 import styles from './Login.module.scss';
 
 const schema = yup.object({

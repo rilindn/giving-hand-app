@@ -1,0 +1,25 @@
+@import '../../theme/styles/variables';
+
+.main {
+  position: relative;
+
+  .icon {
+    cursor: pointer;
+  }
+  .popper {
+    position: absolute;
+    top: 100%;
+    right: -50%;
+    background-color: #fff;
+    height: 20em;
+    width: 20em;
+    padding: 1em;
+    box-shadow: 0 0 10px $wheat;
+    border-radius: $normalRadius;
+    h4 {
+      margin: 0.5em 0;
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid $textColor;
+    }
+  }
+}

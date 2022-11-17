@@ -3,11 +3,11 @@ import _ from 'lodash';
 
 import { IProduct } from 'interfaces/product';
 import PlaceIcon from '@mui/icons-material/Place';
-import { Menu, MenuItem, Modal } from '@mui/material';
+import { Menu, MenuItem, Modal, Popper } from '@mui/material';
 import { useState } from 'react';
 import { FiberManualRecordRounded, MoreHoriz } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import ProductForm from 'components/ProductForm/ProductForm';
+import ProductForm from 'components/Forms/ProductForm/ProductForm';
 import moment from 'moment';
 import styles from './Product.module.scss';
 
@@ -72,7 +72,7 @@ const Product: React.FC<Props> = ({ product, handleDeleteProduct }) => {
         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
           <MenuItem onClick={navigateToProduct}>View</MenuItem>
           <MenuItem onClick={handleEdit}>Edit</MenuItem>
-          <MenuItem onClick={handleDelete}>Delete</MenuItem>
+          <DeleteItemMenu handleDelete={handleDelete} />
         </Menu>
       </div>
       <Modal className={styles.modal} open={isProductFormShown} onClose={() => setIsProductFormShown(false)}>
@@ -80,6 +80,35 @@ const Product: React.FC<Props> = ({ product, handleDeleteProduct }) => {
           <ProductForm isEditing product={product} onClose={() => setIsProductFormShown(false)} />
         </>
       </Modal>
+    </div>
+  );
+};
+
+interface IDeleteItemMenu {
+  handleDelete: () => void;
+}
+
+const DeleteItemMenu: React.FC<IDeleteItemMenu> = ({ handleDelete }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+
+  return (
+    <div>
+      <MenuItem onClick={handleClick}>Delete</MenuItem>
+      <Popper open={open} anchorEl={anchorEl} placement={'right-start'}>
+        <div className={styles.popper}>
+          <span>Are you sure?</span>
+          <div>
+            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleClick}>Cancel</button>
+          </div>
+        </div>
+      </Popper>
     </div>
   );
 };

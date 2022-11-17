@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 
 import { IProductRequest } from 'interfaces/productRequest';
-import CustomButton from 'components/Button/Button';
+import CustomButton from 'components/Inputs/Button/Button';
 import { editProductRequest } from 'api/ApiMethods';
 import _ from 'lodash';
 import { Avatar } from '@mui/material';

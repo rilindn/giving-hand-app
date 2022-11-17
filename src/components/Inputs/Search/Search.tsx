@@ -1,6 +1,6 @@
-import CustomInput from 'components/Input/Input';
+import CustomInput from 'components/Inputs/Input/Input';
 import { useForm } from 'react-hook-form';
-import CustomButton from 'components/Button/Button';
+import CustomButton from 'components/Inputs/Button/Button';
 
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';

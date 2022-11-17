@@ -112,3 +112,33 @@
     }
   }
 }
+:global(.MuiPopperUnstyled-root) {
+  z-index: 10000;
+  .popper {
+    background: white;
+    border-radius: 4px;
+    padding: 1em;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    color: black;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5em;
+      margin-top: 0.5em;
+
+      button {
+        width: 50%;
+        padding: 0.5em;
+        border-radius: 4px;
+        border: 1px solid $lightGreen;
+        background-color: #fff;
+        cursor: pointer;
+
+        &:first-child {
+          background-color: rgba($secondaryColor, 0.3);
+        }
+      }
+    }
+  }
+}
