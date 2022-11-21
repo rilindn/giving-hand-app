@@ -145,3 +145,23 @@ export async function editProductRequest(productRequestId: string | undefined, p
     console.error('editProductRequest', err);
   }
 }
+
+/* Motifications */
+
+export async function getMyNotifications(id: string) {
+  try {
+    const result: AxiosResponse = await Client.get(`notification/${id}`);
+    return result;
+  } catch (err) {
+    console.error('getMyNotifications', err);
+  }
+}
+
+export async function readAllNotifications(id: string) {
+  try {
+    const result: AxiosResponse = await Client.post(`notification/read-all/${id}`);
+    return result;
+  } catch (err) {
+    console.error('readAllNotifications', err);
+  }
+}

@@ -14,6 +14,7 @@ const CustomInput: React.FC<Props> = ({
   type = 'text',
   errors,
   rounded,
+  onEnter,
   ...props
 }) => {
   return (
@@ -30,6 +31,11 @@ const CustomInput: React.FC<Props> = ({
             variant={variant}
             margin={margin}
             type={type}
+            onKeyPress={(e) => {
+              if (onEnter && e.key === 'Enter') {
+                onEnter(value);
+              }
+            }}
             {...props}
           />
         )}
@@ -54,6 +60,7 @@ interface Props {
   hiddenLabel?: boolean;
   InputProps?: InputProps;
   placeholder?: string;
+  onEnter?: (val: string) => void;
 }
 
 interface InputProps {

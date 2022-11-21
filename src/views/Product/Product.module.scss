@@ -14,6 +14,8 @@
     .title {
       margin-top: 0;
       text-align: left;
+      border-bottom: 1px solid $wheat;
+      padding-bottom: 0.3em;
     }
     .productData {
       display: flex;
@@ -36,6 +38,7 @@
           }
         }
         svg {
+          color: $wheat;
           &:hover {
             color: gray !important;
           }
@@ -79,7 +82,7 @@
         .header {
           display: flex;
           justify-content: space-between;
-          border-bottom: 1px solid $textColor;
+          border-bottom: 1px solid $wheat;
 
           .user {
             display: flex;
@@ -95,14 +98,13 @@
         }
         .categories {
           display: flex;
-          max-width: 80%;
           overflow: hidden;
           gap: 5px;
           flex-wrap: wrap;
           padding-bottom: 1em;
 
           :global(.MuiChip-root) {
-            padding: 0 1.5em;
+            padding: 0 0.5em;
             background-color: #fff;
             color: $mainColor;
             border: 1px solid $mainColor;
@@ -113,6 +115,10 @@
           align-items: center;
           font-weight: bold;
         }
+      }
+      .footer {
+        display: flex;
+        flex-direction: column;
       }
     }
   }

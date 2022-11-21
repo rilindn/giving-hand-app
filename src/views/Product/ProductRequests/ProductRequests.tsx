@@ -15,7 +15,7 @@ interface Props {
 
 const ProductRequests: React.FC<Props> = ({ requests = [] }) => {
   return (
-    <div className={styles.main}>
+    <div id="requests" className={styles.main}>
       <h2>Requests</h2>
       <div className={styles.requests}>
         {requests.map((r: IProductRequest) => {

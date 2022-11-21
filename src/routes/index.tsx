@@ -20,7 +20,7 @@ const Navigation: React.FC = () => {
         <Route path="change-password" element={<ChangePassword />} />
       </Route>
       <Route path="/" element={<AuthRoute />}>
-        <Route path="home" element={<Home />} />
+        <Route index path="home" element={<Home />} />
         <Route path="product/:id" element={<Product />} />
         <Route path="my-products" element={<MyProducts />} />
       </Route>

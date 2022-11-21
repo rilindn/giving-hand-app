@@ -5,13 +5,21 @@
 
   .icon {
     cursor: pointer;
+    position: relative;
+    .unread {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 13px !important;
+    }
   }
   .popper {
+    z-index: 100;
     position: absolute;
     top: 100%;
     right: -50%;
     background-color: #fff;
-    height: 20em;
+    height: 18em;
     width: 20em;
     padding: 1em;
     box-shadow: 0 0 10px $wheat;
@@ -20,6 +28,39 @@
       margin: 0.5em 0;
       padding-bottom: 0.5em;
       border-bottom: 1px solid $textColor;
+    }
+
+    .notifications {
+      overflow-y: auto;
+      max-height: 85%;
+
+      .notification {
+        display: flex;
+        background-color: $lightGreen;
+        padding: 0.5em;
+        border-radius: $normalRadius;
+        margin: 0.5em 0;
+
+        .data {
+          padding-left: 0.5em;
+
+          .date {
+            text-align: right;
+            font-size: $tinyFont;
+            font-weight: bold;
+          }
+          .description {
+            font-size: $smallFont;
+            margin: 0;
+            a {
+              color: $textColor;
+            }
+          }
+        }
+        .unread {
+          font-size: 10px !important;
+        }
+      }
     }
   }
 }

@@ -11,8 +11,12 @@ const Search: React.FC<Props> = ({ setSearch }) => {
   const { control, watch } = useForm();
   const search = watch('search');
 
-  useEffect(() => {
+  const handleSearch = () => {
     setSearch(search);
+  };
+
+  useEffect(() => {
+    if (!search) setSearch(search);
   }, [search]);
 
   return (
@@ -25,6 +29,7 @@ const Search: React.FC<Props> = ({ setSearch }) => {
           name="search"
           placeholder="Search"
           margin="none"
+          onEnter={handleSearch}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -33,7 +38,7 @@ const Search: React.FC<Props> = ({ setSearch }) => {
             )
           }}
         />
-        <CustomButton title="Search" rounded />
+        <CustomButton title="Search" rounded onClick={handleSearch} />
       </div>
     </div>
   );

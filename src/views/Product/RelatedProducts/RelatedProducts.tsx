@@ -30,7 +30,7 @@ const RelatedProducts: React.FC<Props> = ({ products }) => {
         {products.map((p) => {
           return (
             <a href={`/product/${p._id}`} className={styles.product} key={p._id}>
-              <img src={p.images[0].url} alt={p.title} />
+              <img src={p.images[0]?.url} alt={p.title} />
               <div className={styles.details}>
                 <div className={styles.titleContainer}>
                   <h4>{p.title}</h4>

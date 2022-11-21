@@ -6,18 +6,18 @@ import Slider from 'react-slick';
 import { Avatar, Chip, Modal } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
+import moment from 'moment';
 
 import { IProduct } from 'interfaces/product';
 import { getProductById, getProducts } from 'api/ApiMethods';
 import useAuth from 'hooks/useAuth';
 import CustomButton from 'components/Inputs/Button/Button';
 import stringAvatar from 'utils/stringAvatar';
-import moment from 'moment';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import RequestProduct from './RequestProduct/RequestProduct';
 import RelatedProducts from './RelatedProducts/RelatedProducts';
 import ProductRequests from './ProductRequests/ProductRequests';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import styles from './Product.module.scss';
 
 const libraries: ('drawing' | 'geometry' | 'localContext' | 'places' | 'visualization')[] = ['places'];
@@ -57,7 +57,9 @@ const Product: React.FC<Props> = ({}) => {
 
   if (!product) return <div></div>;
 
-  const fullName = `${product.user?.[0].firstName} ${product.user?.[0].lastName}`;
+  const fullName = `${product.user?.[0]?.firstName} ${product.user?.[0]?.lastName}`;
+  const isRequestDenied: boolean =
+    product.userId === authData._id || !!product.requests.find(({ userId }) => authData._id === userId);
 
   return (
     <div className={styles.main}>
@@ -102,11 +104,10 @@ const Product: React.FC<Props> = ({}) => {
                 {product.location?.address}
               </span>
             </div>
-            <CustomButton
-              disabled={product.userId === authData._id}
-              onClick={() => setIsProductFormShown(true)}
-              title="Request"
-            />
+            <div className={styles.footer}>
+              <span className={styles.requests}>{product.requests?.length || 0} requests</span>
+              <CustomButton disabled={isRequestDenied} onClick={() => setIsProductFormShown(true)} title="Request" />
+            </div>
           </div>
         </div>
       </div>
@@ -123,7 +124,7 @@ const Product: React.FC<Props> = ({}) => {
         )}
       </div>
 
-      {authData._id !== product?.user?.[0]?._id
+      {authData._id !== product?.userId
         ? !!relatedProducts.length && <RelatedProducts products={relatedProducts} />
         : !!product.requests.length && <ProductRequests requests={product.requests} />}
       <Modal className={styles.modal} open={isProductFormShown} onClose={() => setIsProductFormShown(false)}>
