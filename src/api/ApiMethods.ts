@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { ILogin, IUser } from 'interfaces/user';
+import { ILogin, IUser, IUserPayload } from 'interfaces/user';
 import { IResetPassword, IValidateToken } from 'interfaces/resetToken';
 import { IResetTokenSearch } from 'interfaces/resetToken';
 import { IAllProductQuery, IProductPayload } from 'interfaces/product';
@@ -43,6 +43,15 @@ export async function register(payload: IUser) {
   }
 }
 
+export async function editProfile(userId: string | undefined, payload: IUserPayload) {
+  try {
+    const result: AxiosResponse = await Client.put(`user/${userId}`, payload);
+    return result;
+  } catch (err) {
+    console.error('editProfile', err);
+  }
+}
+
 export async function requestResetPassword(payload: IResetTokenSearch) {
   try {
     const result: AxiosResponse = await Client.post(`auth/password/request-reset`, payload);
@@ -81,9 +90,11 @@ export async function newProduct(payload: IProductPayload) {
   }
 }
 
-export async function getProducts({ search, categories }: IAllProductQuery) {
+export async function getProducts({ search, categories, offset }: IAllProductQuery) {
   try {
-    const result: AxiosResponse = await Client.get(`product?search=${search}&categories=${categories}`);
+    const result: AxiosResponse = await Client.get(
+      `product?search=${search}&categories=${categories}&offset=${offset}`
+    );
     return result;
   } catch (err) {
     console.error('getProducts', err);

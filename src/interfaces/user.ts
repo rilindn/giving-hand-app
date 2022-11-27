@@ -7,6 +7,13 @@ export interface IUser {
   gender: string;
   birthDate: string;
 }
+export interface IUserPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  gender: string;
+  birthDate: string;
+}
 
 export interface ILogin {
   email: string;

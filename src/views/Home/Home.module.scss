@@ -10,12 +10,24 @@
     max-width: 1000px;
     padding: 2em 10em;
 
-    .products {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 3rem;
-      justify-content: space-between;
+    .productsContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .products {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 3rem;
+        justify-content: space-between;
+      }
+      button {
+        width: 200px;
+        span {
+          color: $mainColor;
+        }
+      }
     }
   }
 }

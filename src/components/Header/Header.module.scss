@@ -33,7 +33,7 @@
       display: flex;
       align-items: center;
       margin-left: 2em;
-      span {
+      .fullName {
         margin-right: 0.7em;
       }
     }
@@ -42,4 +42,7 @@
     background-color: gray;
     width: 50%;
   }
+}
+.yourProfile {
+  margin-left: 0.2em;
 }

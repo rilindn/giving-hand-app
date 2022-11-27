@@ -1,0 +1,41 @@
+@import '../../../theme/styles/variables';
+
+.main {
+  z-index: 3;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  .form {
+    max-height: 80vh;
+    padding: 3em 8em;
+    background-color: $lightGreen;
+    border-radius: $normalRadius;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 35em;
+      height: 100%;
+      justify-content: space-between;
+
+      .inputsWrapper {
+        display: flex;
+        justify-content: space-between;
+        > div,
+        > button {
+          width: 48% !important;
+        }
+      }
+    }
+    .intro {
+      font-size: $largeFont;
+      font-weight: 600;
+    }
+  }
+}

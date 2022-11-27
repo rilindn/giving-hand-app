@@ -5,13 +5,14 @@ import CustomButton from 'components/Inputs/Button/Button';
 import ProductForm from 'components/Forms/ProductForm/ProductForm';
 import useAuth from 'hooks/useAuth';
 import stringAvatar from 'utils/stringAvatar';
-import { NotificationsOutlined } from '@mui/icons-material';
 import NotificationsPopper from 'components/NotificationsPopper/NotificationsPopper';
+import UserProfileForm from 'components/Forms/UserProfileForm/UserProfileForm';
 import styles from './Header.module.scss';
 
 const Header: React.FC<Props> = () => {
   const { authData, handleSignOut } = useAuth();
   const [isProductFormShown, setIsProductFormShown] = useState<boolean>(false);
+  const [isUserProfileFormShown, setIsUserProfileFormShown] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -32,9 +33,13 @@ const Header: React.FC<Props> = () => {
         <CustomButton title="List a Product" onClick={() => setIsProductFormShown(true)} />
         <NotificationsPopper />
         <div className={styles.user}>
-          <span>{fullName}</span>
+          <span className={styles.fullName}>{fullName}</span>
           <Avatar onClick={(e) => handleClick(e)} {...stringAvatar(fullName)} />
           <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+            <MenuItem onClick={() => setIsUserProfileFormShown(true)}>
+              <Avatar onClick={(e) => handleClick(e)} {...stringAvatar(fullName, 35, 35, 15)} />
+              <span className={styles.yourProfile}>Your profile</span>
+            </MenuItem>
             <MenuItem onClick={handleSignOut}>Logout</MenuItem>
           </Menu>
         </div>
@@ -42,6 +47,11 @@ const Header: React.FC<Props> = () => {
       <Modal className={styles.modal} open={isProductFormShown} onClose={() => setIsProductFormShown(false)}>
         <>
           <ProductForm onClose={() => setIsProductFormShown(false)} />
+        </>
+      </Modal>
+      <Modal className={styles.modal} open={isUserProfileFormShown} onClose={() => setIsUserProfileFormShown(false)}>
+        <>
+          <UserProfileForm onClose={() => setIsUserProfileFormShown(false)} />
         </>
       </Modal>
     </div>

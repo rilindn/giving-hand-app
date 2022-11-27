@@ -37,4 +37,6 @@ export interface ILocation extends google.maps.LatLngLiteral {
 export interface IAllProductQuery {
   search?: string;
   categories?: string;
+  offset?: number;
+  limit?: number;
 }
