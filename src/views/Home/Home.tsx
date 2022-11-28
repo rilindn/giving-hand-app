@@ -6,6 +6,7 @@ import Search from 'components/Inputs/Search/Search';
 import { getProducts } from 'api/ApiMethods';
 import { IProduct } from 'interfaces/product';
 import CustomButton from 'components/Inputs/Button/Button';
+import useAuth from 'hooks/useAuth';
 import styles from './Home.module.scss';
 import Product from './Product/Product';
 import Categories from './Categories/Categories';
@@ -15,6 +16,7 @@ let pagination = 1;
 let offset = 0;
 
 const Home: React.FC = () => {
+  const { authData } = useAuth();
   const [loading, setLoading] = useState<boolean>(true);
   const [loadingMore, setLoadingMore] = useState<boolean>(true);
   const [search, setSearch] = useState<string>('');
@@ -29,8 +31,9 @@ const Home: React.FC = () => {
     }
     setLoadingMore(true);
     const categories = selectedCategories.join(',');
+    const excludeIds = [authData?._id];
     try {
-      const productsData = await getProducts({ search, categories, offset });
+      const productsData = await getProducts({ search, categories, offset, excludeIds });
       if (productsData?.status === 200) {
         if (loadMore) {
           setProducts([...products, ...productsData.data]);

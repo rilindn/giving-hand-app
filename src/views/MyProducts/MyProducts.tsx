@@ -44,13 +44,7 @@ const MyProducts: React.FC<Props> = () => {
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <h2 className={styles.title}>My Products</h2>
-        {!loading ? (
-          <div className={styles.products}>
-            {products.map((product: IProduct) => (
-              <Product key={product?._id} product={product} handleDeleteProduct={handleDeleteProduct} />
-            ))}
-          </div>
-        ) : (
+        {loading ? (
           <div className={styles.products}>
             {_.range(6).map((m) => (
               <div key={m}>
@@ -58,6 +52,14 @@ const MyProducts: React.FC<Props> = () => {
               </div>
             ))}
           </div>
+        ) : products?.length ? (
+          <div className={styles.products}>
+            {products.map((product: IProduct) => (
+              <Product key={product?._id} product={product} handleDeleteProduct={handleDeleteProduct} />
+            ))}
+          </div>
+        ) : (
+          <h5>No products to show</h5>
         )}
       </div>
     </div>

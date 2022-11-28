@@ -90,10 +90,10 @@ export async function newProduct(payload: IProductPayload) {
   }
 }
 
-export async function getProducts({ search, categories, offset }: IAllProductQuery) {
+export async function getProducts({ search, categories, offset, excludeIds }: IAllProductQuery) {
   try {
     const result: AxiosResponse = await Client.get(
-      `product?search=${search}&categories=${categories}&offset=${offset}`
+      `product?search=${search}&categories=${categories}&offset=${offset}&excludeIds=${excludeIds?.join(',')}`
     );
     return result;
   } catch (err) {

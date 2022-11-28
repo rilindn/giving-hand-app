@@ -37,10 +37,11 @@ const Header: React.FC<Props> = () => {
           <Avatar onClick={(e) => handleClick(e)} {...stringAvatar(fullName)} />
           <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
             <MenuItem onClick={() => setIsUserProfileFormShown(true)}>
-              <Avatar onClick={(e) => handleClick(e)} {...stringAvatar(fullName, 35, 35, 15)} />
               <span className={styles.yourProfile}>Your profile</span>
             </MenuItem>
-            <MenuItem onClick={handleSignOut}>Logout</MenuItem>
+            <MenuItem className={styles.logout} onClick={handleSignOut}>
+              Logout
+            </MenuItem>
           </Menu>
         </div>
       </div>
