@@ -7,7 +7,7 @@
   justify-content: center;
 
   .form {
-    height: 80vh;
+    max-height: 80vh;
     padding: 3em 8em;
     background-color: $lightGreen;
     border-radius: $normalRadius;
@@ -17,16 +17,16 @@
     flex-direction: column;
     overflow-y: auto;
 
+    > svg {
+      min-height: 64px;
+    }
+
     form {
       display: flex;
       flex-direction: column;
       width: 50em;
       height: 100%;
       justify-content: space-between;
-
-      svg {
-        min-height: 64px;
-      }
 
       .inputsWrapper {
         display: flex;

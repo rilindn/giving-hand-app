@@ -139,6 +139,15 @@ export async function deleteProduct(id: string) {
 
 /* Product Request */
 
+export async function getMyRequests(id: string) {
+  try {
+    const result: AxiosResponse = await Client.get(`product-request/my-requests/${id}`);
+    return result;
+  } catch (err) {
+    console.error('getMyRequests', err);
+  }
+}
+
 export async function newProductRequest(payload: IProductPayload) {
   try {
     const result: AxiosResponse = await Client.post(`product-request`, payload);

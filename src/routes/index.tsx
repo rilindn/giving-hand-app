@@ -7,6 +7,7 @@ import ResetPassword from 'views/ResetPassword/ResetPassword';
 import ChangePassword from 'views/ChangePassword/ChangePassword';
 import Product from 'views/Product/Product';
 import MyProducts from 'views/MyProducts/MyProducts';
+import MyRequests from 'views/MyRequests/MyRequests';
 import AuthRoute from './AuthRoute';
 import NonAuthRoute from './NonAuthRoute';
 
@@ -23,6 +24,7 @@ const Navigation: React.FC = () => {
         <Route index path="home" element={<Home />} />
         <Route path="product/:id" element={<Product />} />
         <Route path="my-products" element={<MyProducts />} />
+        <Route path="my-requests" element={<MyRequests />} />
       </Route>
     </Routes>
   );

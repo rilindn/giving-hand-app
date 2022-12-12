@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Close, Home, PostAdd } from '@mui/icons-material';
+import { Close, Home, DriveFileRenameOutline, Inventory } from '@mui/icons-material';
 import clsx from 'clsx';
 
 import { ClickAwayListener } from '@mui/material';
@@ -42,8 +42,18 @@ const Sidebar: React.FC<Props> = () => {
             className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}
           >
             <div className={styles.item}>
-              <PostAdd className={styles.icon} width={27} height={25} />
+              <Inventory className={styles.icon} width={27} height={25} />
               <span className={styles.sectionText}>My Products</span>
+            </div>
+          </NavLink>
+          <NavLink
+            to="/my-requests"
+            onClick={handleClose}
+            className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}
+          >
+            <div className={styles.item}>
+              <DriveFileRenameOutline className={styles.icon} width={27} height={25} />
+              <span className={styles.sectionText}>My Requests</span>
             </div>
           </NavLink>
         </div>

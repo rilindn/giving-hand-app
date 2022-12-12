@@ -57,7 +57,7 @@ const Product: React.FC<Props> = ({}) => {
 
   if (!product) return <div></div>;
 
-  const fullName = `${product.user?.[0]?.firstName} ${product.user?.[0]?.lastName}`;
+  const fullName = `${product.user?.firstName} ${product.user?.lastName}`;
   const isRequestDenied: boolean =
     product.userId === authData._id || !!product.requests.find(({ userId }) => authData._id === userId);
 

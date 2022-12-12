@@ -13,7 +13,7 @@ export interface IProduct {
   userId: string;
   location: ILocation;
   categories: string[];
-  user?: IUser[];
+  user?: IUser;
   requests: IProductRequest[];
   createdAt: string;
   updatedAt: string;

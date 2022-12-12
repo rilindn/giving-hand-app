@@ -1,4 +1,5 @@
 import { IUser } from 'interfaces/user';
+import { IProduct } from 'interfaces/product';
 
 export interface IProductRequest {
   _id: string;
@@ -9,6 +10,7 @@ export interface IProductRequest {
   createdAt: string;
   updatedAt: string;
   requester: IUser;
+  product?: IProduct;
   __v: number;
 }
 

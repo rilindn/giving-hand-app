@@ -1,0 +1,27 @@
+@import '../../theme/styles/variables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    max-width: 1000px;
+    width: 100%;
+    padding: 2em 10em;
+
+    .title {
+      width: 100%;
+      margin: 1em 0;
+      padding: 0.5em 0;
+      border-bottom: 1px solid $textColor;
+    }
+
+    .requests {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@import '../../../theme/styles/variables';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: $normalRadius;
+  padding: 1em;
+  margin: 1em;
+  text-decoration: none;
+  background-color: $lightGreen;
+
+  .request {
+    width: 100%;
+    .date {
+      display: block;
+      text-align: right;
+      font-weight: 300;
+      font-size: $smallFont;
+    }
+  }
+
+  .product {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    height: 100%;
+    background-color: rgba($color: $mainColor, $alpha: 0.2);
+    color: $textColor;
+    padding: 1em;
+    border-radius: $normalRadius;
+    width: -webkit-fill-available;
+
+    .user {
+      display: flex;
+      align-items: center;
+      h3 {
+        margin-left: 0.5em;
+      }
+    }
+
+    .productData {
+      display: flex;
+      .image {
+        aspect-ratio: 1/1;
+        width: 35%;
+        object-fit: cover;
+        border-radius: $normalRadius;
+        height: 100%;
+      }
+
+      .details {
+        width: 65%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        color: $textColor;
+        margin: 0 1em;
+        height: 100%;
+
+        .descriptionGroup {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .topContainer {
+            display: flex;
+            flex-direction: column;
+            margin-left: 0.2em;
+
+            .title {
+              font-size: $normalFont;
+              font-weight: 500;
+              margin: 0.5em 0;
+            }
+            .description {
+              font-size: $smallFont;
+              margin: 0;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+          }
+          .bottomContainer {
+            display: flex;
+            justify-content: space-between;
+
+            .bottomLeftContainer {
+              display: flex;
+              align-items: center;
+
+              .locationGroup {
+                display: flex;
+                align-items: center;
+
+                .location {
+                  font-size: $extraSmallFont;
+                  font-weight: 500;
+                }
+              }
+              .separator {
+                display: flex;
+                align-items: center;
+                margin: 0 5px;
+
+                svg {
+                  font-size: 7px;
+                }
+              }
+              .date {
+                font-size: $extraSmallFont;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
