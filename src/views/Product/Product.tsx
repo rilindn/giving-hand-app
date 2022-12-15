@@ -129,7 +129,11 @@ const Product: React.FC<Props> = ({}) => {
         : !!product.requests.length && <ProductRequests requests={product.requests} />}
       <Modal className={styles.modal} open={isProductFormShown} onClose={() => setIsProductFormShown(false)}>
         <>
-          <RequestProduct productId={product._id} onClose={() => setIsProductFormShown(false)} />
+          <RequestProduct
+            productId={product._id}
+            productUserId={product.userId}
+            onClose={() => setIsProductFormShown(false)}
+          />
         </>
       </Modal>
     </div>

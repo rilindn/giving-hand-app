@@ -1,6 +1,7 @@
 import axios from 'axios';
+import io from 'socket.io-client';
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = process.env.REACT_APP_API_URL!;
 
 const Client = axios.create({
   baseURL: apiUrl,
@@ -11,4 +12,12 @@ const Client = axios.create({
   }
 });
 
-export { Client };
+const socket = io(apiUrl, {
+  extraHeaders: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  autoConnect: false
+});
+
+export { Client, socket };

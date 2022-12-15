@@ -10,6 +10,7 @@ import useAuth from 'hooks/useAuth';
 import CustomButton from 'components/Inputs/Button/Button';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { IProductPayload } from 'interfaces/product';
+import { socket } from 'api/ApiBase';
 import styles from './RequestProduct.module.scss';
 
 const schema = yup.object({
@@ -19,9 +20,10 @@ const schema = yup.object({
 interface Props {
   onClose: () => void;
   productId: string;
+  productUserId: string;
 }
 
-const RequestProduct: React.FC<Props> = ({ productId, onClose }) => {
+const RequestProduct: React.FC<Props> = ({ productId, productUserId, onClose }) => {
   const { authData } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,6 +45,7 @@ const RequestProduct: React.FC<Props> = ({ productId, onClose }) => {
       };
       const result = await newProductRequest(payload);
       if (result?.status === 200) {
+        socket.emit('send-notification', { userId: productUserId });
         enqueueSnackbar('Product request sent!', { variant: 'success' });
         onClose();
       } else enqueueSnackbar('Please try again!', { variant: 'error' });

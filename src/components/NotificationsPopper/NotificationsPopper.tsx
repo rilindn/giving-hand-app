@@ -8,6 +8,7 @@ import { INotification, INotificationTransformed } from 'interfaces/notification
 import transformNotificationsResponse from 'transformers/notifications';
 import { AxiosResponse } from 'axios';
 import stringAvatar from 'utils/stringAvatar';
+import { socket } from 'api/ApiBase';
 import styles from './NotificationsPopper.module.scss';
 
 const NotificationsPopper: React.FC<Props> = ({}) => {
@@ -35,13 +36,25 @@ const NotificationsPopper: React.FC<Props> = ({}) => {
     fetchNotifications();
   }, []);
 
+  useEffect(() => {
+    socket.on('receive-notification', (payload) => {
+      const transformedNotifications = transformNotificationsResponse(payload);
+      setNotifications(transformedNotifications);
+      checkUnreadNotifications(transformedNotifications);
+    });
+    return () => {
+      socket.off('receive-notification');
+    };
+  }, []);
+
   const handleClick = async () => {
     if (!isPopperOpen) {
-      fetchNotifications();
+      await fetchNotifications();
 
       if (hasUnreadNotifications) {
         const result = await readAllNotifications(authData._id);
         if (result?.status === 200) {
+          console.log('hasunread');
           setHasUnreadNotifications(false);
         }
       }

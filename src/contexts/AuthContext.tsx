@@ -1,4 +1,4 @@
-import { Client } from 'api/ApiBase';
+import { Client, socket } from 'api/ApiBase';
 import { loggedUser } from 'api/ApiMethods';
 import React, { createContext, useState, useEffect } from 'react';
 
@@ -16,6 +16,7 @@ const AuthContextProvider: React.FC<Props> = ({ children }) => {
       const token = localStorage.getItem('AuthToken');
       if (token) {
         Client.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        setAuthTokenOnSocketHeader(token);
         const authData: IUser = await loggedUser();
         setAuthData(authData);
         setIsAuthenticated(true);
@@ -28,9 +29,11 @@ const AuthContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   const handleSignIn = async (data: SignInResponse) => {
-    if (data.token) {
-      localStorage.setItem('AuthToken', data?.token);
-      Client.defaults.headers.common['Authorization'] = 'Bearer ' + data?.token;
+    const token = data.token;
+    if (token) {
+      localStorage.setItem('AuthToken', token);
+      Client.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+      setAuthTokenOnSocketHeader(token);
     }
     await loadAuthData();
   };
@@ -39,6 +42,14 @@ const AuthContextProvider: React.FC<Props> = ({ children }) => {
     localStorage.setItem('AuthToken', '');
     setAuthData(null);
     setIsAuthenticated(false);
+  };
+
+  const setAuthTokenOnSocketHeader = (token: string) => {
+    if (!socket.io.opts.extraHeaders?.['Authorization']) {
+      if (socket.io.opts.extraHeaders) {
+        socket.io.opts.extraHeaders['Authorization'] = 'Bearer ' + token;
+      }
+    }
   };
 
   useEffect(() => {
