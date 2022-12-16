@@ -4,6 +4,7 @@ import { FiberManualRecordRounded } from '@mui/icons-material';
 import moment from 'moment';
 import { IProductRequest } from 'interfaces/productRequest';
 import stringAvatar from 'utils/stringAvatar';
+import clsx from 'clsx';
 import styles from './Request.module.scss';
 
 const Request: React.FC<Props> = ({ request }) => {
@@ -12,8 +13,21 @@ const Request: React.FC<Props> = ({ request }) => {
   return (
     <div className={styles.main}>
       <div className={styles.request}>
-        <span className={styles.date}>{moment(request.createdAt).format('DD MMM YYYY')}</span>
-        <p>{request.description}</p>
+        <div className={styles.topHeader}>
+          <span className={styles.date}>{moment(request.createdAt).format('DD MMM YYYY')}</span>
+          <h4
+            className={clsx(styles.status, {
+              [styles.pending]: request.status === 'Pending',
+              [styles.accepted]: request.status === 'Accepted',
+              [styles.rejected]: request.status === 'Rejected'
+            })}
+          >
+            {request.status}
+          </h4>
+        </div>
+        <p>
+          <b>Description:</b> {request.description}
+        </p>
       </div>
       <a href={`product/${request.product?._id}`} target="_blank" className={styles.product} rel="noreferrer">
         <div className={styles.user}>

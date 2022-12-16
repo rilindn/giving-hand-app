@@ -110,9 +110,11 @@ export async function getProductById(id: string) {
   }
 }
 
-export async function getMyProducts(id: string) {
+export async function getMyProducts(id: string, search: string, categories: string) {
   try {
-    const result: AxiosResponse = await Client.get(`product/my-products/${id}`);
+    const result: AxiosResponse = await Client.get(
+      `product/my-products/${id}?search=${search}&categories=${categories}`
+    );
     return result;
   } catch (err) {
     console.error('getMyProducts', err);
@@ -139,9 +141,11 @@ export async function deleteProduct(id: string) {
 
 /* Product Request */
 
-export async function getMyRequests(id: string) {
+export async function getMyRequests(id: string, searchValue: string, status: string) {
   try {
-    const result: AxiosResponse = await Client.get(`product-request/my-requests/${id}`);
+    const result: AxiosResponse = await Client.get(
+      `product-request/my-requests/${id}?search=${searchValue}&status=${status}`
+    );
     return result;
   } catch (err) {
     console.error('getMyRequests', err);

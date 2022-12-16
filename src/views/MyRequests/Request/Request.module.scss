@@ -13,11 +13,33 @@
 
   .request {
     width: 100%;
+
     .date {
       display: block;
       text-align: right;
       font-weight: 300;
       font-size: $smallFont;
+    }
+    .topHeader {
+      display: flex;
+      justify-content: space-between;
+
+      .status {
+        margin: 0;
+        padding: 0.5em;
+        color: $lightGreen;
+        border-radius: $smallRadius;
+        font-size: $normalFont;
+      }
+      .pending {
+        background-color: rgb(226, 177, 86);
+      }
+      .accepted {
+        background-color: $mainColor;
+      }
+      .rejected {
+        background-color: $secondaryColor;
+      }
     }
   }
 

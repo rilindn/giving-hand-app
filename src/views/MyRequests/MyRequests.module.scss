@@ -11,11 +11,19 @@
     width: 100%;
     padding: 2em 10em;
 
-    .title {
+    .header {
+      display: flex;
+      justify-content: space-between;
       width: 100%;
       margin: 1em 0;
       padding: 0.5em 0;
       border-bottom: 1px solid $textColor;
+
+      .filters {
+        display: flex;
+        align-items: center;
+        column-gap: 2em;
+      }
     }
 
     .requests {
