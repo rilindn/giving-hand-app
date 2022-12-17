@@ -58,7 +58,6 @@ const MyRequests: React.FC<Props> = () => {
             />
             <CustomInput
               control={control}
-              rounded
               name="search"
               placeholder="Search"
               margin="none"
