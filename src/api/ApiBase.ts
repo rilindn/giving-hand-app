@@ -15,7 +15,8 @@ const Client = axios.create({
 const socket = io(apiUrl, {
   extraHeaders: {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   },
   autoConnect: false
 });
