@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 import Button from '@mui/material/Button';
-import clsx from 'clsx';
+import clsx, { ClassValue } from 'clsx';
 
 import styles from './Button.module.scss';
 
@@ -11,12 +11,13 @@ const CustomButton: React.FC<Props> = ({
   title,
   loading = false,
   rounded,
+  customStyles,
   ...props
 }) => {
   return (
     <Button
       onClick={onClick}
-      className={clsx(styles.main, { [styles.rounded]: !!rounded })}
+      className={clsx(customStyles, styles.main, { [styles.rounded]: !!rounded })}
       variant={variant}
       type={type}
       {...props}
@@ -33,6 +34,7 @@ interface Props {
   loading?: boolean;
   rounded?: boolean;
   disabled?: boolean;
+  customStyles?: ClassValue;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   color?: 'primary' | 'inherit' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | undefined;
 }

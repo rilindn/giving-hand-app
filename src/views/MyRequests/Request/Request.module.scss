@@ -46,7 +46,6 @@
   .product {
     display: flex;
     flex-direction: column;
-    text-decoration: none;
     height: 100%;
     background-color: rgba($color: $mainColor, $alpha: 0.2);
     color: $textColor;
@@ -54,16 +53,31 @@
     border-radius: $normalRadius;
     width: -webkit-fill-available;
 
-    .user {
+    .userContainer {
       display: flex;
       align-items: center;
-      h3 {
-        margin-left: 0.5em;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba($textColor, 0.3);
+      margin-bottom: 0.5em;
+
+      .user {
+        display: flex;
+        align-items: center;
+        h3 {
+          margin-left: 0.5em;
+        }
+      }
+      .newMsgButton {
+        color: $mainColor;
+        text-decoration: underline;
+        cursor: pointer;
       }
     }
 
     .productData {
       display: flex;
+      text-decoration: none;
+
       .image {
         aspect-ratio: 1/1;
         width: 35%;
@@ -71,7 +85,6 @@
         border-radius: $normalRadius;
         height: 100%;
       }
-
       .details {
         width: 65%;
         display: flex;

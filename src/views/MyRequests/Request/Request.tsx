@@ -2,13 +2,37 @@ import PlaceIcon from '@mui/icons-material/Place';
 import { Avatar } from '@mui/material';
 import { FiberManualRecordRounded } from '@mui/icons-material';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
+
 import { IProductRequest } from 'interfaces/productRequest';
 import stringAvatar from 'utils/stringAvatar';
-import clsx from 'clsx';
+import { newChat } from 'api/ApiMethods';
+import { IChatPayload } from 'interfaces/chat';
 import styles from './Request.module.scss';
 
-const Request: React.FC<Props> = ({ request }) => {
+const Request: React.FC<Props> = ({ request, loggedUserId }) => {
+  const navigate = useNavigate();
   const fullName = `${request.product?.user?.firstName} ${request.product?.user?.lastName}`;
+
+  const handleCreateChat = async () => {
+    try {
+      const secondUserId = request.product?.user?._id;
+      if (!secondUserId) return;
+
+      const payload: IChatPayload = {
+        firstUserId: loggedUserId,
+        secondUserId
+      };
+      const result = await newChat(payload);
+      if (result?.status === 200) {
+        const chatId = result.data._id;
+        navigate(`/messages?chat=${chatId}`, { replace: true });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={styles.main}>
@@ -29,12 +53,19 @@ const Request: React.FC<Props> = ({ request }) => {
           <b>Description:</b> {request.description}
         </p>
       </div>
-      <a href={`product/${request.product?._id}`} target="_blank" className={styles.product} rel="noreferrer">
-        <div className={styles.user}>
-          <Avatar {...stringAvatar(fullName, 40, 40, 18)} />
-          <h3>{fullName}</h3>
+      <div className={styles.product}>
+        <div className={styles.userContainer}>
+          <div className={styles.user}>
+            <Avatar {...stringAvatar(fullName, 40, 40, 18)} />
+            <h3>{fullName}</h3>
+          </div>
+          {request.status === 'Accepted' && (
+            <p onClick={handleCreateChat} className={styles.newMsgButton}>
+              Send message
+            </p>
+          )}
         </div>
-        <div className={styles.productData}>
+        <a href={`product/${request.product?._id}`} target="_blank" rel="noreferrer" className={styles.productData}>
           <img className={styles.image} src={request.product?.images?.[0]?.url} alt={request.product?.title} />
           <div className={styles.details}>
             <div className={styles.descriptionGroup}>
@@ -56,14 +87,15 @@ const Request: React.FC<Props> = ({ request }) => {
               </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
   );
 };
 
 interface Props {
   request: IProductRequest;
+  loggedUserId: string;
 }
 
 export default Request;

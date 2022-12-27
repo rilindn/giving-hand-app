@@ -1,0 +1,38 @@
+@import '../../theme/styles/variables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  .content {
+    max-width: 1000px;
+    width: 100%;
+    padding: 2em 10em;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: 1em 0;
+      padding: 0.5em 0;
+      border-bottom: 1px solid $textColor;
+    }
+    .chat {
+      height: 600px;
+      background-color: $lightGreen;
+      border-radius: $normalRadius;
+      padding: 2em;
+      display: flex;
+      gap: 1em;
+    }
+
+    .requests {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

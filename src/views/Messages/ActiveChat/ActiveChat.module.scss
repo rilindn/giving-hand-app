@@ -1,0 +1,250 @@
+@import '../../../theme/styles/variables';
+
+.main {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 1em;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba($mainColor, 0.2);
+  border-radius: $normalRadius;
+
+  .chat {
+    height: 85%;
+    position: relative;
+
+    .chatHeader {
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
+      box-sizing: border-box;
+      box-shadow: 0px 1px 0px rgba($mainColor, 0.2);
+      border-radius: $normalRadius;
+
+      .activeUser {
+        display: flex;
+        align-items: center;
+        column-gap: 0.5em;
+
+        h4 {
+          margin: 0;
+        }
+      }
+    }
+    .messagesContainer {
+      display: flex;
+      flex-direction: column-reverse;
+      padding: 1em;
+      height: 85%;
+      overflow-x: auto;
+
+      .messages {
+        box-sizing: border-box;
+
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+
+        .messageContainer {
+          display: flex;
+          flex-direction: column;
+          row-gap: 0.5em;
+          column-gap: 1em;
+
+          .messagesDay {
+            text-align: center;
+            font-size: $smallFont;
+            font-weight: 300;
+            overflow: hidden;
+            text-align: center;
+            margin: 2em 0;
+
+            &:before,
+            &:after {
+              background-color: $wheat;
+              content: '';
+              display: inline-block;
+              height: 1px;
+              position: relative;
+              vertical-align: middle;
+              width: 50%;
+            }
+
+            &:before {
+              right: 0.5em;
+              margin-left: -50%;
+            }
+
+            &:after {
+              left: 0.5em;
+              margin-right: -50%;
+            }
+          }
+
+          .message {
+            display: flex;
+            align-items: center;
+            column-gap: 0.5em;
+
+            &.own {
+              align-self: flex-end;
+              flex-direction: row-reverse;
+
+              .messageText {
+                background-color: $mainColor;
+                border-top-right-radius: 0;
+                border-top-left-radius: $normalRadius;
+
+                img {
+                  border-top-right-radius: 0;
+                  border-top-left-radius: $normalRadius;
+                }
+              }
+            }
+
+            .messageText {
+              padding: 0.5em;
+              background-color: $secondaryColor;
+              color: white;
+              width: fit-content;
+              border-radius: $normalRadius;
+              border-top-left-radius: 0;
+              position: relative;
+              display: flex;
+              flex-direction: column-reverse;
+              align-items: flex-end;
+
+              .actionMenu {
+                position: absolute;
+                top: 5px;
+                right: 100%;
+                background-color: white;
+                padding: 0.25em;
+                color: $textColor;
+                border-radius: 5px;
+                box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%),
+                  0px 3px 14px 2px rgb(0 0 0 / 12%);
+                z-index: 100;
+              }
+
+              img {
+                margin-bottom: 0.5em;
+                border-radius: $normalRadius;
+                border-top-left-radius: 0;
+                max-width: 300px;
+              }
+              .text {
+                margin-right: 8px;
+              }
+
+              &:hover {
+                .more {
+                  display: block;
+                }
+              }
+              .more {
+                display: none;
+                position: absolute;
+                top: -5px;
+                left: -10px;
+                transform: rotate(90deg);
+                background-color: $wheat;
+                border-radius: 999px;
+                color: $textColor;
+                cursor: pointer;
+              }
+            }
+            .emojis {
+              padding: 0;
+              background-color: transparent !important;
+              font-size: 30px;
+            }
+            .unseen {
+              font-size: 7px !important;
+            }
+            // &:not(.own) .seperator.seen {
+            //   color: $mainColor;
+            // }
+            .time {
+              font-size: $extraSmallFont;
+            }
+          }
+        }
+      }
+      .expandedSenderData {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // border-bottom: 1px solid $wheat;
+        width: 100%;
+
+        h2 {
+          margin: 1em 0 0 0;
+        }
+
+        .senderEmail {
+          font-size: $extraSmallFont;
+          margin: 0.2em;
+        }
+
+        .beginningNote {
+          font-size: $normalFont;
+          text-align: center;
+          margin-bottom: 3em;
+        }
+      }
+    }
+  }
+
+  .inputsContainer {
+    height: 15%;
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    // box-shadow: 0px -1px 0px rgba($mainColor, 0.2);
+    border-radius: $normalRadius;
+
+    .input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      column-gap: 0.5em;
+
+      > div {
+        width: 100%;
+      }
+
+      .button {
+        margin-right: -1em;
+        margin-left: 5px;
+        height: 3.2em;
+        margin-top: 0 !important;
+        box-shadow: none;
+      }
+      .imageInput {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .remove {
+          cursor: pointer;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .image {
+          margin-right: 10px;
+          border-radius: $fullRadius;
+          object-fit: cover;
+          box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%),
+            0px 3px 14px 2px rgb(0 0 0 / 12%);
+          height: 3em;
+          width: 5em;
+        }
+      }
+    }
+  }
+}

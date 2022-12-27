@@ -83,7 +83,7 @@ const MyRequests: React.FC<Props> = () => {
         ) : requests?.length ? (
           <div className={styles.requests}>
             {requests.map((request: IProductRequest) => (
-              <Request key={request?._id} request={request} />
+              <Request key={request?._id} request={request} loggedUserId={authData?._id} />
             ))}
           </div>
         ) : (

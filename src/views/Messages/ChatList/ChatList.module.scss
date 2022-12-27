@@ -1,0 +1,48 @@
+@import '../../../theme/styles/variables';
+
+.main {
+  width: 30%;
+  background-color: white;
+  border-radius: $normalRadius;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  box-shadow: 0px 0px 10px rgba($mainColor, 0.2);
+
+  .user {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    column-gap: 1em;
+    padding: 0.5em;
+    cursor: pointer;
+    border-radius: $normalRadius;
+    border: 1px solid rgba($mainColor, 0.1);
+
+    &:hover,
+    &.active {
+      background-color: rgba($mainColor, 0.2);
+    }
+
+    h4,
+    p {
+      margin: 0;
+    }
+    p {
+      font-size: $smallFont;
+    }
+    .bottomMsgContainer {
+      display: flex;
+      align-items: center;
+      column-gap: 0.25em;
+    }
+  }
+  .searchInput {
+    > div {
+      input {
+        height: 15px !important;
+      }
+    }
+  }
+}

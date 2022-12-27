@@ -8,6 +8,7 @@ import ChangePassword from 'views/ChangePassword/ChangePassword';
 import Product from 'views/Product/Product';
 import MyProducts from 'views/MyProducts/MyProducts';
 import MyRequests from 'views/MyRequests/MyRequests';
+import Messages from 'views/Messages/Messages';
 import AuthRoute from './AuthRoute';
 import NonAuthRoute from './NonAuthRoute';
 
@@ -25,6 +26,7 @@ const Navigation: React.FC = () => {
         <Route path="product/:id" element={<Product />} />
         <Route path="my-products" element={<MyProducts />} />
         <Route path="my-requests" element={<MyRequests />} />
+        <Route path="messages" element={<Messages />} />
       </Route>
     </Routes>
   );

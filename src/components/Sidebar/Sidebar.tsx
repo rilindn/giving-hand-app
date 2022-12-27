@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Close, Home, DriveFileRenameOutline, Inventory } from '@mui/icons-material';
+import { Close, Home, DriveFileRenameOutline, Inventory, Chat } from '@mui/icons-material';
 import clsx from 'clsx';
 
 import { ClickAwayListener } from '@mui/material';
@@ -29,7 +29,7 @@ const Sidebar: React.FC<Props> = () => {
           <NavLink
             to="/home"
             onClick={handleClose}
-            className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}
+            className={({ isActive }) => clsx(styles.subContainer, { [styles.linkActive]: isActive })}
           >
             <div className={styles.item}>
               <Home className={styles.icon} />
@@ -39,7 +39,7 @@ const Sidebar: React.FC<Props> = () => {
           <NavLink
             to="/my-products"
             onClick={handleClose}
-            className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}
+            className={({ isActive }) => clsx(styles.subContainer, { [styles.linkActive]: isActive })}
           >
             <div className={styles.item}>
               <Inventory className={styles.icon} width={27} height={25} />
@@ -49,11 +49,21 @@ const Sidebar: React.FC<Props> = () => {
           <NavLink
             to="/my-requests"
             onClick={handleClose}
-            className={({ isActive }) => styles.subContainer + (isActive ? ' ' + styles.linkActive : '')}
+            className={({ isActive }) => clsx(styles.subContainer, { [styles.linkActive]: isActive })}
           >
             <div className={styles.item}>
               <DriveFileRenameOutline className={styles.icon} width={27} height={25} />
               <span className={styles.sectionText}>My Requests</span>
+            </div>
+          </NavLink>
+          <NavLink
+            to="/messages"
+            onClick={handleClose}
+            className={({ isActive }) => clsx(styles.subContainer, { [styles.linkActive]: isActive })}
+          >
+            <div className={styles.item}>
+              <Chat className={styles.icon} width={27} height={25} />
+              <span className={styles.sectionText}>Messages</span>
             </div>
           </NavLink>
         </div>
@@ -62,9 +72,6 @@ const Sidebar: React.FC<Props> = () => {
   );
 };
 
-interface Props {
-  //   isActive: boolean;
-  //   handleClose: () => void;
-}
+interface Props {}
 
 export default Sidebar;

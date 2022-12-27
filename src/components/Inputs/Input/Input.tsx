@@ -1,7 +1,7 @@
 import { Control, Controller, FieldPath, FieldPathValue, FieldValues } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { FieldErrors } from 'react-hook-form/dist/types';
-import clsx from 'clsx';
+import clsx, { ClassValue } from 'clsx';
 
 import styles from './Input.module.scss';
 
@@ -15,29 +15,32 @@ const CustomInput: React.FC<Props> = ({
   errors,
   rounded,
   onEnter,
+  customStyles,
   ...props
 }) => {
   return (
-    <div className={styles.main}>
+    <div className={clsx(styles.main, customStyles)}>
       <Controller
         name={name}
         control={control}
         defaultValue={defaultValue}
         render={({ field: { onChange, value } }: IController) => (
-          <TextField
-            className={clsx(styles.input, { [styles.rounded]: !!rounded })}
-            value={value}
-            onChange={onChange}
-            variant={variant}
-            margin={margin}
-            type={type}
-            onKeyPress={(e) => {
-              if (onEnter && e.key === 'Enter') {
-                onEnter(value);
-              }
-            }}
-            {...props}
-          />
+          <>
+            <TextField
+              className={clsx(styles.input, { [styles.rounded]: !!rounded })}
+              value={value}
+              onChange={onChange}
+              variant={variant}
+              margin={margin}
+              type={type}
+              onKeyPress={(e) => {
+                if (onEnter && e.key === 'Enter') {
+                  onEnter(value);
+                }
+              }}
+              {...props}
+            />
+          </>
         )}
       />
       {errors?.[name] && <span className={styles.error}>{errors?.[name]?.message}</span>}
@@ -61,10 +64,12 @@ interface Props {
   InputProps?: InputProps;
   placeholder?: string;
   onEnter?: (val: string) => void;
+  customStyles?: ClassValue;
 }
 
 interface InputProps {
-  startAdornment: React.ReactNode;
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
 }
 
 interface IController {

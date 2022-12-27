@@ -4,6 +4,7 @@ import { IResetPassword, IValidateToken } from 'interfaces/resetToken';
 import { IResetTokenSearch } from 'interfaces/resetToken';
 import { IAllProductQuery, IProductPayload } from 'interfaces/product';
 import { IProductRequestPayload } from 'interfaces/productRequest';
+import { IChatPayload, IMessage, IMessagePayload } from 'interfaces/chat';
 import { Client } from './ApiBase';
 
 // Users
@@ -170,7 +171,7 @@ export async function editProductRequest(productRequestId: string | undefined, p
   }
 }
 
-/* Motifications */
+/* Notifications */
 
 export async function getMyNotifications(id: string) {
   try {
@@ -187,5 +188,52 @@ export async function readAllNotifications(id: string) {
     return result;
   } catch (err) {
     console.error('readAllNotifications', err);
+  }
+}
+
+/* Messages */
+
+export async function getMyChats(userId: string, search: string) {
+  try {
+    const result: AxiosResponse = await Client.get(`chat/${userId}?search=${search}`);
+    return result;
+  } catch (err) {
+    console.error('getMyChats', err);
+  }
+}
+
+export async function newChat(payload: IChatPayload) {
+  try {
+    const result: AxiosResponse = await Client.post('chat', payload);
+    return result;
+  } catch (err) {
+    console.error('newChat', err);
+  }
+}
+
+export async function newMessage(id: string, payload: IMessagePayload) {
+  try {
+    const result: AxiosResponse = await Client.put(`chat/new-message/${id}`, payload);
+    return result;
+  } catch (err) {
+    console.error('newMessage', err);
+  }
+}
+
+export async function readAllMessages(chatId: string, receiverId: string) {
+  try {
+    const result: AxiosResponse = await Client.put(`chat/read-messages`, { chatId, receiverId });
+    return result;
+  } catch (err) {
+    console.error('readAllMessages', err);
+  }
+}
+
+export async function deleteMessage(chatId: string, messageId: string) {
+  try {
+    const result: AxiosResponse = await Client.delete(`chat/delete-message/${chatId}/${messageId}`);
+    return result;
+  } catch (err) {
+    console.error('deleteMessage', err);
   }
 }
