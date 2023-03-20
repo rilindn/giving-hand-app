@@ -11,7 +11,7 @@ import stringAvatar from 'utils/stringAvatar';
 import { socket } from 'api/ApiBase';
 import styles from './NotificationsPopper.module.scss';
 
-const NotificationsPopper: React.FC<Props> = ({}) => {
+const NotificationsPopper: React.FC<Props> = () => {
   const [isPopperOpen, setIsPopperOpen] = useState<boolean>(false);
   const { authData } = useAuth();
   const [notifications, setNotifications] = useState<INotificationTransformed[]>();

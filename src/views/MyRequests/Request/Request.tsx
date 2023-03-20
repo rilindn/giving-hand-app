@@ -71,7 +71,7 @@ const Request: React.FC<Props> = ({ request, loggedUserId }) => {
             <div className={styles.descriptionGroup}>
               <div className={styles.topContainer}>
                 <h2 className={styles.title}>{request?.product?.title}</h2>
-                <p className={styles.description}>{request.description}</p>
+                <p className={styles.description}>{request.product?.description}</p>
               </div>
               <div className={styles.bottomContainer}>
                 <div className={styles.bottomLeftContainer}>

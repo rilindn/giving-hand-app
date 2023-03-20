@@ -43,7 +43,6 @@ const Messages: React.FC<Props> = () => {
   useEffect(() => {
     socket.on('receive-message', (payload) => {
       if (activeChat) {
-        console.log({ payload });
         setActiveChat({ ...activeChat, messages: payload.messages });
       }
     });
