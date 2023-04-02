@@ -11,6 +11,7 @@ const SocketContextProvider: React.FC<Props> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | undefined>();
 
   useEffect(() => {
+    if (!process.env.REACT_APP_ENABLE_WE_SOCKETS) return;
     socketClient.connect();
     if (authData) {
       socketClient.emit('join', authData?._id);
